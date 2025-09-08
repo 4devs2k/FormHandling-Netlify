@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umgebungsvariablen mit Netlify</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Umgebungsvariablen mit Netlify</h1>
+        <p>Lokale Entwicklung vs. Production Deployment</p>
+      </header>
+
+      <!-- Neues Kontaktformular-Sektion -->
+      <div class="content">
+        <div class="demo-section">
+          <h2><i class="fas fa-envelope"></i> Live Demo - Kontaktformular</h2>
+          <p>Testen Sie die Netlify Function mit diesem Kontaktformular:</p>
+
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Mail:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Betreff:</label>
+              <input type="text" id="subject" name="subject" required />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Nachricht:</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i> Nachricht senden
+            </button>
+          </form>
+
+          <div id="formStatus" class="form-status"></div>
+        </div>
+
+        <div class="methods">
+          <div class="method">
+            <h2><i class="fas fa-laptop-code"></i> Lokale Entwicklung</h2>
+            <p>
+              Für die lokale Entwicklung können Sie eine <code>.env</code> Datei
+              verwenden:
+            </p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <p>
+                  Erstellen Sie eine <code>.env</code> Datei im Stammverzeichnis
+                  Ihres Projekts:
+                </p>
+              </div>
+
+              <div class="code-example">
+                # .env Datei<br />
+                SMTP_HOST=smtp.gmail.com<br />
+                SMTP_PORT=465<br />
+                SMTP_USER=ihre-email@gmail.com<br />
+                SMTP_PASS=ihr-app-passwort<br />
+                FROM_EMAIL=ihre-email@gmail.com<br />
+                TO_EMAIL=empfaenger-email@example.com
+              </div>
+
+              <div class="step">
+                <div class="step-number">2</div>
+                <p>
+                  Fügen Sie <code>.env</code> zu Ihrer
+                  <code>.gitignore</code> Datei hinzu:
+                </p>
+              </div>
+
+              <div class="code-example">
+                # .gitignore<br />
+                .env<br />
+                node_modules/<br />
+                .netlify/
+              </div>
+
+              <div class="step">
+                <div class="step-number">3</div>
+                <p>Starten Sie den Development-Server mit:</p>
+              </div>
+
+              <div class="code-example">netlify dev</div>
+            </div>
+
+            <div class="note">
+              <strong>Hinweis:</strong> Netlify CLI liest automatisch die
+              <code>.env</code> Datei und stellt die Umgebungsvariablen für Ihre
+              Functions bereit.
+            </div>
+          </div>
+
+          <div class="method">
+            <h2><i class="fas fa-cloud"></i> Production Deployment</h2>
+            <p>
+              Für die Bereitstellung auf Netlify müssen Sie die
+              Umgebungsvariablen im Dashboard setzen:
+            </p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <p>
+                  Melden Sie sich bei
+                  <a href="https://app.netlify.com" target="_blank">Netlify</a>
+                  an
+                </p>
+              </div>
+
+              <div class="step">
+                <div class="step-number">2</div>
+                <p>Wählen Sie Ihre Site aus</p>
+              </div>
+
+              <div class="step">
+                <div class="step-number">3</div>
+                <p>
+                  Gehen Sie zu
+                  <strong>Site settings > Environment variables</strong>
+                </p>
+              </div>
+
+              <div class="step">
+                <div class="step-number">4</div>
+                <p>Fügen Sie jede Variable einzeln hinzu:</p>
+              </div>
+
+              <div class="code-example">
+                Schlüssel: SMTP_HOST<br />
+                Wert: smtp.gmail.com<br /><br />
+                Schlüssel: SMTP_PORT<br />
+                Wert: 465<br /><br />
+                Schlüssel: SMTP_USER<br />
+                Wert: ihre-email@gmail.com<br /><br />
+                Schlüssel: SMTP_PASS<br />
+                Wert: ihr-app-passwort<br /><br />
+                Schlüssel: FROM_EMAIL<br />
+                Wert: ihre-email@gmail.com<br /><br />
+                Schlüssel: TO_EMAIL<br />
+                Wert: empfaenger-email@example.com
+              </div>
+            </div>
+
+            <div class="note">
+              <strong>Tipp:</strong> Sie können auch unterschiedliche Werte für
+              verschiedene Deployment-Branches festlegen (z.B. production vs.
+              development).
+            </div>
+          </div>
+        </div>
+
+        <div class="warning">
+          <h3>
+            <i class="fas fa-exclamation-triangle"></i> Wichtige
+            Sicherheitshinweise:
+          </h3>
+          <ul>
+            <li>
+              Die <code>.env</code> Datei <strong>darf niemals</strong> in Git
+              eingecheckt werden
+            </li>
+            <li>
+              Fügen Sie <code>.env</code> immer zu Ihrer
+              <code>.gitignore</code> Datei hinzu
+            </li>
+            <li>
+              Sensible Daten wie Passwörter und API-Keys gehören nicht ins
+              Version-Control
+            </li>
+            <li>
+              Für Gmail benötigen Sie ein App-Passwort, nicht Ihr reguläres
+              Passwort
+            </li>
+          </ul>
+        </div>
+
+        <div class="method">
+          <h2>
+            <i class="fas fa-code"></i> So greifen Sie in der Function auf die
+            Variablen zu
+          </h2>
+          <p>
+            In Ihrer Netlify Function können Sie auf die Umgebungsvariablen über
+            <code>process.env</code> zugreifen:
+          </p>
+
+          <div class="code-example">
+            // netlify/functions/send-email.js<br />
+            const nodemailer = require('nodemailer');<br />
+            <br />
+            exports.handler = async (event, context) => {<br />
+            &nbsp;&nbsp;// Umgebungsvariablen auslesen<br />
+            &nbsp;&nbsp;const {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;SMTP_HOST,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;SMTP_PORT,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;SMTP_USER,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;SMTP_PASS,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;FROM_EMAIL,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;TO_EMAIL<br />
+            &nbsp;&nbsp;} = process.env;<br />
+            <br />
+            &nbsp;&nbsp;// E-Mail-Transporter konfigurieren<br />
+            &nbsp;&nbsp;const transporter = nodemailer.createTransporter({<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;host: SMTP_HOST,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;port: SMTP_PORT,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;secure: true,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;auth: {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user: SMTP_USER,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pass: SMTP_PASS<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+            &nbsp;&nbsp;});<br />
+            <br />
+            &nbsp;&nbsp;// ... Rest des Codes<br />
+            };
+          </div>
+        </div>
+
+        <div class="note">
+          <h3><i class="fas fa-lightbulb"></i> Zusätzlicher Tipp:</h3>
+          <p>
+            Sie können eine <code>.env.example</code> Datei erstellen, die die
+            benötigten Variablen auflistet (ohne Werte), um anderen Entwicklern
+            zu zeigen, welche Umgebungsvariablen benötigt werden:
+          </p>
+
+          <div class="code-example">
+            # .env.example<br />
+            SMTP_HOST=<br />
+            SMTP_PORT=<br />
+            SMTP_USER=<br />
+            SMTP_PASS=<br />
+            FROM_EMAIL=<br />
+            TO_EMAIL=
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          © 2023 | Umgebungsvariablen mit Netlify - Sichere Konfiguration für
+          Entwicklung und Production
+        </p>
+      </footer>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
