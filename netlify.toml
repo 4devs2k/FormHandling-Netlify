@@ -1,10 +1,12 @@
 [build]
   functions = "netlify/functions"
   publish = "."
+  # Installiere Dependencies auch im Functions-Ordner
+  command = "cd netlify/functions && npm install && cd ../.."
 
 [functions]
-  # Deaktiviere esbuild-Bundling - nutze node_modules direkt
+  # Deaktiviere Bundling komplett - nutze node_modules direkt
   node_bundler = "nft"
-  included_files = ["node_modules/**"]
+  external_node_modules = ["nodemailer"]
 
 # Netlify installiert automatisch npm dependencies aus package.json
