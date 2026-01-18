@@ -9,16 +9,16 @@ body {
   background: linear-gradient(135deg, #204A48 0%, #65946E 100%);
   min-height: 100vh;
   padding: 1rem;
-  color: #333;
+  color: #3d2814;
   line-height: 1.6;
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  background: white;
+  background: #faf8f0;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -35,9 +35,15 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
+header p {
+  color: #D3AA64;
+  margin-bottom: 0;
+}
+
 /* Content */
 .content {
   padding: 1.25rem;
+  background: #f5f3e8;
 }
 
 /* Demo Section */
@@ -83,9 +89,10 @@ h1 {
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(197, 193, 123, 0.5);
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.9);
+  background: #fefdf8;
+  color: #333;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -149,11 +156,12 @@ h1 {
 }
 
 .method {
-  background: #f9f9f9;
+  background: #fefdf8;
   padding: 1.5rem;
   border-radius: 8px;
   border-left: 4px solid #914522;
   margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(145, 69, 34, 0.1);
 }
 
 h2 {
@@ -175,8 +183,8 @@ p {
 
 /* Code Examples */
 .code-example {
-  background: #2d2d2d;
-  color: #f8f8f2;
+  background: #1a3735;
+  color: #C5C17B;
   padding: 1rem;
   border-radius: 6px;
   margin: 1rem 0;
@@ -188,10 +196,11 @@ p {
 
 /* Steps */
 .steps {
-  background: #faf9f3;
+  background: #ebe9da;
   padding: 1.25rem;
   border-radius: 8px;
   margin: 1.25rem 0;
+  border: 1px solid #C5C17B;
 }
 
 .step {
@@ -244,9 +253,10 @@ p {
 footer {
   text-align: center;
   padding: 1.25rem;
-  color: #666;
+  color: #914522;
   font-size: 0.875rem;
-  border-top: 1px solid #eee;
+  border-top: 2px solid #C5C17B;
+  background: #ebe9da;
 }
 
 /* Tablet and up */
