@@ -5,8 +5,7 @@
   command = "cd netlify/functions && npm install && cd ../.."
 
 [functions]
-  # Deaktiviere Bundling komplett - nutze node_modules direkt
-  node_bundler = "nft"
-  external_node_modules = ["nodemailer"]
+  # Kein Bundling - nutze Dependencies direkt aus node_modules
+  node_bundler = "none"
 
 # Netlify installiert automatisch npm dependencies aus package.json
