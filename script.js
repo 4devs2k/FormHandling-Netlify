@@ -15,7 +15,7 @@
 const getFormElements = () => ({
   form: document.getElementById("contactForm"),
   status: document.getElementById("formStatus"),
-  submitBtn: document.querySelector(".submit-btn"),
+  submitBtn: document.querySelector(".contact-form__button"),
 });
 
 // === FORM DATA ===
@@ -46,7 +46,7 @@ const isFormDataValid = (data) =>
  * @param {string} message - Error message to display
  */
 const showError = (statusEl, message) => {
-  statusEl.className = "form-status error";
+  statusEl.className = "form-status form-status--error";
   statusEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
 };
 
@@ -55,7 +55,7 @@ const showError = (statusEl, message) => {
  * @param {HTMLElement} statusEl - Status element
  */
 const showSuccess = (statusEl) => {
-  statusEl.className = "form-status success";
+  statusEl.className = "form-status form-status--success";
   statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Nachricht erfolgreich gesendet!';
 };
 

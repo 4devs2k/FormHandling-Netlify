@@ -13,8 +13,7 @@ body {
   line-height: 1.6;
 }
 
-/* Page Container Block */
-.page {
+.container {
   max-width: 1000px;
   margin: 0 auto;
   background: #faf8f0;
@@ -23,32 +22,32 @@ body {
   overflow: hidden;
 }
 
-/* Header Block */
-.header {
+/* Header */
+header {
   background: #914522;
   color: white;
   padding: 1.5rem;
   text-align: center;
 }
 
-.header__title {
+h1 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.header__subtitle {
+header p {
   color: #D3AA64;
   margin-bottom: 0;
 }
 
-/* Content Block */
+/* Content */
 .content {
   padding: 1.25rem;
   background: #f5f3e8;
 }
 
-/* Demo Section Block */
-.demo {
+/* Demo Section */
+.demo-section {
   background: linear-gradient(135deg, #65946E 0%, #204A48 100%);
   color: white;
   padding: 1.5rem;
@@ -57,7 +56,7 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.demo__title {
+.demo-section h2 {
   margin-bottom: 1rem;
   color: white;
   font-size: 1.25rem;
@@ -65,11 +64,7 @@ body {
   align-items: center;
 }
 
-.demo__description {
-  margin-bottom: 1rem;
-}
-
-/* Contact Form Block */
+/* Contact Form */
 .contact-form {
   background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
@@ -78,11 +73,11 @@ body {
   margin-top: 1rem;
 }
 
-.contact-form__group {
+.form-group {
   margin-bottom: 1.25rem;
 }
 
-.contact-form__label {
+.form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
@@ -90,8 +85,8 @@ body {
   font-size: 0.9rem;
 }
 
-.contact-form__input,
-.contact-form__textarea {
+.form-group input,
+.form-group textarea {
   width: 100%;
   padding: 0.75rem;
   border: 2px solid rgba(197, 193, 123, 0.5);
@@ -102,14 +97,14 @@ body {
   transition: all 0.3s ease;
 }
 
-.contact-form__input:focus,
-.contact-form__textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: #D3AA64;
   box-shadow: 0 0 10px rgba(211, 170, 100, 0.4);
 }
 
-.contact-form__button {
+.submit-btn {
   background: linear-gradient(45deg, #65946E, #204A48);
   color: white;
   border: none;
@@ -122,17 +117,17 @@ body {
   width: 100%;
 }
 
-.contact-form__button:hover:not(:disabled) {
+.submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(101, 148, 110, 0.5);
 }
 
-.contact-form__button:disabled {
+.submit-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Form Status Block */
+/* Form Status Messages */
 .form-status {
   margin-top: 1rem;
   padding: 1rem;
@@ -142,25 +137,24 @@ body {
   font-size: 0.9rem;
 }
 
-.form-status--success {
+.form-status.success {
   background: rgba(101, 148, 110, 0.2);
   border: 2px solid #65946E;
   color: #204A48;
 }
 
-.form-status--error {
+.form-status.error {
   background: rgba(244, 67, 54, 0.2);
   border: 2px solid #f44336;
   color: whitesmoke;
 }
 
-/* Methods Grid Block */
+/* Methods Grid - Mobile First */
 .methods {
   display: block;
   margin-bottom: 2rem;
 }
 
-/* Method Block */
 .method {
   background: #fefdf8;
   padding: 1.5rem;
@@ -170,7 +164,7 @@ body {
   box-shadow: 0 2px 8px rgba(145, 69, 34, 0.1);
 }
 
-.method__title {
+h2 {
   color: #914522;
   margin-bottom: 1rem;
   display: flex;
@@ -178,12 +172,12 @@ body {
   font-size: 1.25rem;
 }
 
-.method__title-icon {
+h2 i {
   margin-right: 0.75rem;
   font-size: 1.25rem;
 }
 
-.method__description {
+p {
   margin-bottom: 1rem;
 }
 
@@ -200,7 +194,7 @@ body {
   line-height: 1.5;
 }
 
-/* Steps Block */
+/* Steps */
 .steps {
   background: #ebe9da;
   padding: 1.25rem;
@@ -209,13 +203,13 @@ body {
   border: 1px solid #C5C17B;
 }
 
-.steps__item {
+.step {
   margin-bottom: 1rem;
   padding-left: 2rem;
   position: relative;
 }
 
-.steps__number {
+.step-number {
   position: absolute;
   left: 0;
   background: #914522;
@@ -230,7 +224,7 @@ body {
   font-size: 0.75rem;
 }
 
-/* Note Block */
+/* Notes and Warnings */
 .note {
   background: #fefdf8;
   padding: 1rem;
@@ -239,18 +233,6 @@ body {
   border-left: 4px solid #D3AA64;
 }
 
-.note__title {
-  color: #914522;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.note__description {
-  margin-bottom: 0;
-}
-
-/* Warning Block */
 .warning {
   background: #ffe6e6;
   padding: 1rem;
@@ -259,30 +241,16 @@ body {
   border-left: 4px solid #dc3545;
 }
 
-.warning__title {
-  color: #914522;
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-}
-
-.warning__title-icon {
-  margin-right: 0.5rem;
-}
-
-.warning__list {
+.warning ul {
   padding-left: 1.25rem;
-  margin: 0;
 }
 
-.warning__item {
+.warning li {
   margin-bottom: 0.5rem;
 }
 
-/* Footer Block */
-.footer {
+/* Footer */
+footer {
   text-align: center;
   padding: 1.25rem;
   color: #914522;
@@ -291,21 +259,17 @@ body {
   background: #ebe9da;
 }
 
-.footer__text {
-  margin: 0;
-}
-
 /* Tablet and up */
 @media (min-width: 768px) {
   body {
     padding: 1.25rem;
   }
 
-  .header {
+  header {
     padding: 2rem;
   }
 
-  .header__title {
+  h1 {
     font-size: 1.75rem;
     margin-bottom: 0.75rem;
   }
@@ -314,11 +278,11 @@ body {
     padding: 2rem;
   }
 
-  .demo {
+  .demo-section {
     padding: 2rem;
   }
 
-  .demo__title {
+  .demo-section h2 {
     font-size: 1.5rem;
   }
 
@@ -326,16 +290,16 @@ body {
     padding: 2rem;
   }
 
-  .contact-form__group {
+  .form-group {
     margin-bottom: 1.5rem;
   }
 
-  .contact-form__input,
-  .contact-form__textarea {
+  .form-group input,
+  .form-group textarea {
     padding: 0.875rem;
   }
 
-  .contact-form__button {
+  .submit-btn {
     padding: 1rem 2rem;
   }
 
@@ -349,11 +313,11 @@ body {
     margin-bottom: 0;
   }
 
-  .method__title {
+  h2 {
     font-size: 1.375rem;
   }
 
-  .method__title-icon {
+  h2 i {
     font-size: 1.5rem;
     margin-right: 1rem;
   }
@@ -362,11 +326,11 @@ body {
     padding: 1.5rem;
   }
 
-  .steps__item {
+  .step {
     padding-left: 2.5rem;
   }
 
-  .steps__number {
+  .step-number {
     width: 1.75rem;
     height: 1.75rem;
     font-size: 0.875rem;
@@ -375,12 +339,12 @@ body {
 
 /* Desktop */
 @media (min-width: 1024px) {
-  .header__title {
+  h1 {
     font-size: 2rem;
   }
 
-  .demo__title,
-  .method__title {
+  .demo-section h2,
+  h2 {
     font-size: 1.5rem;
   }
 
