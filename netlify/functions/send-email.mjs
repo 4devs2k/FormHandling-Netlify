@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 // Rate Limiting: In-Memory Store (einfache Lösung für Serverless)
 // Hinweis: Bei Production würde man Redis/DynamoDB nutzen
@@ -72,8 +72,8 @@ async function validateRecaptcha(token) {
   }
 }
 
-exports.handler = async (event, context) => {
-  console.log("=== Function Start ===");
+export const handler = async (event, context) => {
+  console.log("=== Function Start (ES6+) ===");
   console.log("Function called with method:", event.httpMethod);
   console.log("Environment variables check:", {
     SMTP_HOST: !!process.env.SMTP_HOST,
