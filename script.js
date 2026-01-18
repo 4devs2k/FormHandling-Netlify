@@ -89,7 +89,7 @@ const clearStatus = (statusEl) => {
  * @returns {string|null} Site key or null if not found
  */
 const getRecaptchaSiteKey = () => {
-  const script = document.querySelector('script[src*="recaptcha"]');
+  const script = document.querySelector('script[src*="api.js?render="]');
   return script?.src.match(/render=([^&]+)/)?.[1];
 };
 
