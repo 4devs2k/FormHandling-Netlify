@@ -1,4 +1,5 @@
 # Dependencies
+# package-lock.json
 node_modules/
 
 # Development
@@ -6,7 +7,6 @@ dev-server.js
 
 # Environment files
 .env
-.env.production
 
 # IDE/Editor
 .vscode/
@@ -41,11 +41,6 @@ Thumbs.db
 
 # Coverage reports
 # /coverage
-
-# Firebase
-.firebase
-*-debug.log
-.runtimeconfig.json
 
 # SSL certificates
 csr.pem
