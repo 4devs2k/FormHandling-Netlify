@@ -172,9 +172,15 @@ const getSmtpConfig = () => ({
  * @returns {Object} Nodemailer transporter instance
  */
 const createEmailTransporter = () => {
-  // Fix for esbuild bundling
-  const mailer = nodemailer.default || nodemailer;
-  return mailer.createTransporter(getSmtpConfig());
+  const config = getSmtpConfig();
+  // Handle different bundling scenarios
+  if (typeof nodemailer.createTransport === 'function') {
+    return nodemailer.createTransport(config);
+  }
+  if (nodemailer.default && typeof nodemailer.default.createTransport === 'function') {
+    return nodemailer.default.createTransport(config);
+  }
+  throw new Error('nodemailer.createTransport not available');
 };
 
 /**
