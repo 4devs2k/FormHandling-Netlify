@@ -33,13 +33,25 @@
 
   /* Semantic colors using light-dark() */
   --bg-primary: light-dark(var(--light-bg-primary), var(--dark-bg-primary));
-  --bg-secondary: light-dark(var(--light-bg-secondary), var(--dark-bg-secondary));
+  --bg-secondary: light-dark(
+    var(--light-bg-secondary),
+    var(--dark-bg-secondary)
+  );
   --bg-card: light-dark(var(--light-bg-card), var(--dark-bg-card));
-  --text-primary: light-dark(var(--light-text-primary), var(--dark-text-primary));
-  --text-secondary: light-dark(var(--light-text-secondary), var(--dark-text-secondary));
+  --text-primary: light-dark(
+    var(--light-text-primary),
+    var(--dark-text-primary)
+  );
+  --text-secondary: light-dark(
+    var(--light-text-secondary),
+    var(--dark-text-secondary)
+  );
   --border: light-dark(var(--light-border), var(--dark-border));
   --shadow: light-dark(var(--light-shadow), var(--dark-shadow));
-  --shadow-hover: light-dark(var(--light-shadow-hover), var(--dark-shadow-hover));
+  --shadow-hover: light-dark(
+    var(--light-shadow-hover),
+    var(--dark-shadow-hover)
+  );
 
   /* Status colors */
   --success-bg: light-dark(#c6f6d5, #1b4721);
@@ -65,7 +77,8 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Comic Neue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-primary);
@@ -73,12 +86,61 @@ body {
 }
 
 /* ==========================================
+   THEME TOGGLE BUTTON
+   ========================================== */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: light-dark(rgba(255, 255, 255, 0.9), rgba(30, 30, 30, 0.9));
+  border: 2px solid var(--border);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px var(--shadow-hover);
+  border-color: var(--gradient-start);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* .theme-toggle:hover .theme-toggle__icon {
+  transform: rotate(180deg);
+} */
+
+/* ==========================================
    HERO SECTION - Using if() for responsive
    ========================================== */
 .hero {
-  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
   color: white;
-  padding: if(media(300px <= width < 768px): 3rem 1rem; media(768px <= width < 1024px): 5rem 2rem; else: 6rem 2rem;);
+  padding: if(
+    media(300px <= width < 768px): 3rem 1rem;
+      media(768px <= width < 1024px): 5rem 2rem; else: 6rem 2rem;
+  );
   text-align: center;
   min-height: 100vh;
   display: flex;
@@ -92,7 +154,10 @@ body {
 }
 
 .hero__title {
-  font-size: if(media(width < 768px): 2rem; media(768px <= width < 1024px): 3rem; else: 3.5rem;);
+  font-size: if(
+    media(width < 768px): 2rem; media(768px <= width < 1024px): 3rem;
+      else: 3.5rem;
+  );
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.2;
@@ -106,12 +171,20 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .hero__subtitle {
-  font-size: if(media(width < 768px): 1.125rem; media(768px <= width < 1024px): 1.375rem; else: 1.5rem;);
+  font-size: if(
+    media(width < 768px): 1.125rem; media(768px <= width < 1024px): 1.375rem;
+      else: 1.5rem;
+  );
   margin-bottom: 2rem;
   opacity: 0.95;
   max-width: 600px;
@@ -145,7 +218,10 @@ body {
    DEMO SECTION
    ========================================== */
 .demo {
-  padding: if(media(width < 768px): 3rem 1rem; media(768px <= width < 1024px): 5rem 2rem; else: 6rem 2rem;);
+  padding: if(
+    media(width < 768px): 3rem 1rem; media(768px <= width < 1024px): 5rem 2rem;
+      else: 6rem 2rem;
+  );
   background: var(--bg-card);
 }
 
@@ -178,7 +254,10 @@ body {
    ========================================== */
 .contact-form {
   background: var(--bg-secondary);
-  padding: if(media(width < 768px): 2rem 1.5rem; media(768px <= width < 1024px): 3rem 2.5rem; else: 3rem;);
+  padding: if(
+    media(width < 768px): 2rem 1.5rem; media(768px <= width < 1024px): 3rem
+      2.5rem; else: 3rem;
+  );
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--shadow);
 }
@@ -218,7 +297,8 @@ body {
 .contact-form__textarea:focus {
   outline: none;
   border-color: var(--gradient-start);
-  box-shadow: 0 0 0 3px light-dark(rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.2));
+  box-shadow: 0 0 0 3px
+    light-dark(rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.2));
 }
 
 .contact-form__textarea {
@@ -228,7 +308,11 @@ body {
 
 .contact-form__button {
   width: 100%;
-  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
   color: white;
   border: none;
   padding: 1rem;
@@ -289,8 +373,15 @@ body {
    FEATURES SECTION
    ========================================== */
 .features {
-  padding: if(media(width < 768px): 4rem 1rem; media(768px <= width < 1024px): 5rem 2rem; else: 6rem 2rem;);
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  padding: if(
+    media(width < 768px): 4rem 1rem; media(768px <= width < 1024px): 5rem 2rem;
+      else: 6rem 2rem;
+  );
+  background: linear-gradient(
+    180deg,
+    var(--bg-secondary) 0%,
+    var(--bg-primary) 100%
+  );
 }
 
 .features__container {
@@ -307,8 +398,14 @@ body {
 
 .features__grid {
   display: grid;
-  grid-template-columns: if(media(width < 768px): 1fr; media(768px <= width < 1024px): repeat(2, 1fr); else: repeat(3, 1fr););
-  gap: if(media(width < 768px): 1.5rem; media(768px <= width < 1024px): 2rem; else: 2.5rem;);
+  grid-template-columns: if(
+    media(width < 768px): 1fr; media(768px <= width < 1024px): repeat(2, 1fr) ;
+      else: repeat(3, 1fr) ;
+  );
+  gap: if(
+    media(width < 768px): 1.5rem; media(768px <= width < 1024px): 2rem;
+      else: 2.5rem;
+  );
 }
 
 /* Feature Card */
@@ -332,7 +429,11 @@ body {
   width: 64px;
   height: 64px;
   margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start) 0%,
+    var(--gradient-end) 100%
+  );
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -358,7 +459,10 @@ body {
    TECH STACK SECTION
    ========================================== */
 .tech-stack {
-  padding: if(media(width < 768px): 4rem 1rem; media(768px <= width < 1024px): 5rem 2rem; else: 6rem 2rem;);
+  padding: if(
+    media(width < 768px): 4rem 1rem; media(768px <= width < 1024px): 5rem 2rem;
+      else: 6rem 2rem;
+  );
   background: var(--bg-card);
 }
 
@@ -376,7 +480,10 @@ body {
 
 .tech-stack__grid {
   display: grid;
-  grid-template-columns: if(media(width < 768px): repeat(2, 1fr); media(768px <= width < 1024px): repeat(3, 1fr); else: repeat(6, 1fr););
+  grid-template-columns: if(
+    media(width < 768px): repeat(2, 1fr) ;
+      media(768px <= width < 1024px): repeat(3, 1fr) ; else: repeat(6, 1fr) ;
+  );
   gap: if(media(width < 768px): 1rem; else: 2rem;);
 }
 
@@ -407,6 +514,8 @@ body {
   font-weight: 600;
   color: var(--text-primary);
   font-size: 1rem;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 /* ==========================================
@@ -415,7 +524,10 @@ body {
 .footer {
   background: light-dark(#1a202c, #000000);
   color: white;
-  padding: if(media(width < 768px): 3rem 1rem; media(768px <= width < 1024px): 4rem 2rem; else: 5rem 2rem;);
+  padding: if(
+    media(width < 768px): 3rem 1rem; media(768px <= width < 1024px): 4rem 2rem;
+      else: 5rem 2rem;
+  );
   text-align: center;
 }
 
@@ -437,7 +549,10 @@ body {
 .footer__links {
   display: flex;
   flex-direction: if(media(width < 768px): column; else: row;);
-  gap: if(media(width < 768px): 1rem; media(768px <= width < 1024px): 2rem; else: 3rem;);
+  gap: if(
+    media(width < 768px): 1rem; media(768px <= width < 1024px): 2rem;
+      else: 3rem;
+  );
   align-items: center;
   justify-content: center;
 }

@@ -4,17 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Serverless Contact Form | Netlify Functions Demo</title>
-    <meta name="description" content="Modernes Kontaktformular mit Netlify Functions, reCAPTCHA v3 und Rate-Limiting" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <meta
+      name="description"
+      content="Modernes Kontaktformular mit Netlify Functions, reCAPTCHA v3 und Rate-Limiting"
     />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="css/comic.css" />
+    <link rel="stylesheet" href="css/fontawesome.css" />
+    <link rel="stylesheet" href="style.css" />
     <!-- Google reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Ld4rE4sAAAAAKjCanjqlLNpwdx2aWyktDMCqZgn"></script>
   </head>
   <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <img
+        src="assets/scheme/scheme-device.svg"
+        alt="Auto theme"
+        class="theme-toggle__icon"
+        id="themeIcon"
+      />
+    </button>
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero__container">
@@ -23,7 +34,8 @@
           Serverless Contact Form
         </h1>
         <p class="hero__subtitle">
-          Modernes Kontaktformular mit Netlify Functions, reCAPTCHA v3 und intelligentem Spam-Schutz
+          Modernes Kontaktformular mit Netlify Functions, reCAPTCHA v3 und
+          intelligentem Spam-Schutz
         </p>
         <a href="#demo" class="hero__cta">
           <i class="fas fa-rocket"></i> Live Demo testen
@@ -34,11 +46,10 @@
     <!-- Demo Section -->
     <section id="demo" class="demo">
       <div class="demo__container">
-        <h2 class="demo__title">
-          <i class="fas fa-envelope"></i> Live Demo
-        </h2>
+        <h2 class="demo__title"><i class="fas fa-envelope"></i> Live Demo</h2>
         <p class="demo__description">
-          Teste das Kontaktformular - alle Nachrichten werden per E-Mail zugestellt.
+          Teste das Kontaktformular - alle Nachrichten werden per E-Mail
+          zugestellt.
         </p>
 
         <form id="contactForm" class="contact-form">
@@ -176,32 +187,32 @@
         <div class="tech-stack__grid">
           <div class="tech-item">
             <i class="fab fa-node-js tech-item__icon"></i>
-            <span class="tech-item__name">Node.js</span>
+            <div class="tech-item__name">Node.js</div>
           </div>
 
           <div class="tech-item">
             <i class="fas fa-cloud tech-item__icon"></i>
-            <span class="tech-item__name">Netlify</span>
+            <div class="tech-item__name">Netlify</div>
           </div>
 
           <div class="tech-item">
             <i class="fab fa-js tech-item__icon"></i>
-            <span class="tech-item__name">ES6+</span>
+            <div class="tech-item__name">ES6+</div>
           </div>
 
           <div class="tech-item">
             <i class="fab fa-css3-alt tech-item__icon"></i>
-            <span class="tech-item__name">BEM CSS</span>
+            <div class="tech-item__name">BEM CSS</div>
           </div>
 
           <div class="tech-item">
             <i class="fas fa-envelope tech-item__icon"></i>
-            <span class="tech-item__name">Nodemailer</span>
+            <div class="tech-item__name">Nodemailer</div>
           </div>
 
           <div class="tech-item">
             <i class="fab fa-google tech-item__icon"></i>
-            <span class="tech-item__name">reCAPTCHA</span>
+            <div class="tech-item__name">reCAPTCHA</div>
           </div>
         </div>
       </div>
@@ -214,16 +225,24 @@
           <i class="fas fa-code"></i> Built with ❤️ using Netlify Functions
         </p>
         <div class="footer__links">
-          <a href="https://github.com/4devs2k/FormHandling-Netlify" target="_blank" class="footer__link">
+          <a
+            href="https://github.com/4devs2k/FormHandling-Netlify"
+            target="_blank"
+            class="footer__link"
+          >
             <i class="fab fa-github"></i> View on GitHub
           </a>
-          <a href="https://github.com/4devs2k/FormHandling-Netlify/blob/master/CODE_STRUCTURE.md" target="_blank" class="footer__link">
+          <a
+            href="https://github.com/4devs2k/FormHandling-Netlify/blob/master/CODE_STRUCTURE.md"
+            target="_blank"
+            class="footer__link"
+          >
             <i class="fas fa-book"></i> Documentation
           </a>
         </div>
       </div>
     </footer>
-
+    <script src="theme-toggle.js"></script>
     <script src="/script.js"></script>
   </body>
 </html>
