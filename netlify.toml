@@ -5,7 +5,7 @@
   command = "cd netlify/functions && npm install && cd ../.."
 
 [functions]
-  # Kein Bundling - nutze Dependencies direkt aus node_modules
-  node_bundler = "none"
+  # esbuild bundelt nodemailer MIT in die Function
+  node_bundler = "esbuild"
 
 # Netlify installiert automatisch npm dependencies aus package.json
