@@ -53,7 +53,7 @@ Modern portfolio landing page with serverless contact form, email delivery, reCA
 - ✅ BEM methodology
 - ✅ 14-line function rule (clean code)
 - ✅ ES6+ modules
-- ✅ Local fonts (no CDN dependencies)
+- ✅ Custom SVG icons (no external dependencies)
 - ✅ Responsive design (mobile-first)
 
 ## 📁 Project Structure
@@ -72,17 +72,17 @@ Modern portfolio landing page with serverless contact form, email delivery, reCA
 │   ├── _footer.scss           # Footer
 │   └── main.scss              # Master import file
 ├── css/                       # Compiled CSS (gitignored)
-│   ├── main.css               # Generated from SCSS
-│   ├── comic.css              # Comic Neue font faces
-│   └── fontawesome.css        # Font Awesome 6.4.0
+│   └── main.css               # Generated from SCSS
 ├── assets/
-│   ├── fonts/                 # Local font files
-│   └── scheme/                # Theme toggle SVG icons
+│   ├── icons/                 # Custom SVG icons
+│   ├── scheme/                # Theme toggle SVG icons
+│   └── theme/                 # Favicon
+├── js/                        # JavaScript files
+│   ├── script.js              # Form handling
+│   └── theme-toggle.js        # Theme switcher
 ├── netlify/functions/         # Serverless functions
 │   └── send-email.mjs         # Email handler
 ├── index.html                 # Portfolio page
-├── script.js                  # Form handling
-├── theme-toggle.js            # Theme switcher
 └── package.json               # Dependencies & build scripts
 ```
 

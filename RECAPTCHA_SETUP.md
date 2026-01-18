@@ -1,74 +1,74 @@
-# 🔐 reCAPTCHA v3 Setup Anleitung
+# 🔐 reCAPTCHA v3 Setup Guide
 
-## Schritt 1: reCAPTCHA v3 Schlüssel erstellen
+## Step 1: Create reCAPTCHA v3 Keys
 
-1. Gehe zu: https://www.google.com/recaptcha/admin/create
-2. Fülle das Formular aus:
-   - **Label**: `FormHandling-Netlify` (oder eigener Name)
-   - **reCAPTCHA-Typ**: **reCAPTCHA v3** auswählen
+1. Go to: https://www.google.com/recaptcha/admin/create
+2. Fill out the form:
+   - **Label**: `FormHandling-Netlify` (or your own name)
+   - **reCAPTCHA type**: Select **reCAPTCHA v3**
    - **Domains**:
-     - `formhandling-netlify.netlify.app` (deine Production-Domain)
-     - `localhost` (für lokales Testen)
-   - **Besitzer**: Deine E-Mail-Adresse
-   - Akzeptiere die Nutzungsbedingungen
+     - `formhandling-netlify.netlify.app` (your production domain)
+     - `localhost` (for local testing)
+   - **Owner**: Your email address
+   - Accept the terms of service
 
-3. Klicke auf **ABSENDEN**
+3. Click **SUBMIT**
 
-## Schritt 2: Schlüssel kopieren
+## Step 2: Copy Keys
 
-Du erhältst zwei Schlüssel:
+You will receive two keys:
 
-- **Site Key** (öffentlich, für Frontend)
+- **Site Key** (public, for frontend)
   ```
-  6Lc... (Beispiel)
-  ```
-
-- **Secret Key** (privat, für Backend)
-  ```
-  6Lc... (Beispiel)
+  6Lc... (example)
   ```
 
-## Schritt 3: Site Key in index.html einfügen
+- **Secret Key** (private, for backend)
+  ```
+  6Lc... (example)
+  ```
 
-Öffne `index.html` und ersetze `DEIN_RECAPTCHA_SITE_KEY` mit deinem **Site Key**:
+## Step 3: Insert Site Key in index.html
+
+Open `index.html` and replace `YOUR_RECAPTCHA_SITE_KEY` with your **Site Key**:
 
 ```html
 <!-- Google reCAPTCHA v3 -->
-<script src="https://www.google.com/recaptcha/api.js?render=6Lc-DEIN-ECHTER-SITE-KEY"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lc-YOUR-ACTUAL-SITE-KEY"></script>
 ```
 
-## Schritt 4: Secret Key als Environment Variable in Netlify setzen
+## Step 4: Set Secret Key as Environment Variable in Netlify
 
-### Im Netlify Dashboard:
+### In Netlify Dashboard:
 
-1. Gehe zu deinem Projekt: `formhandling-netlify`
-2. Klicke auf **Site configuration** → **Environment variables**
-3. Klicke auf **Add a variable**
-4. Füge hinzu:
+1. Go to your project: `formhandling-netlify`
+2. Click **Site configuration** → **Environment variables**
+3. Click **Add a variable**
+4. Add:
    - **Key**: `RECAPTCHA_SECRET_KEY`
-   - **Value**: Dein Secret Key (der mit 6Lc... beginnt)
+   - **Value**: Your Secret Key (starting with 6Lc...)
    - **Scopes**: `All scopes`
    - **Deploy contexts**: `Same value in all deploy contexts`
-5. Klicke auf **Create variable**
+5. Click **Create variable**
 
-### Für lokales Testen (.env Datei):
+### For Local Testing (.env file):
 
-Erstelle eine `.env` Datei (falls noch nicht vorhanden) und füge hinzu:
+Create a `.env` file (if not already present) and add:
 
 ```env
-# Bestehende SMTP Variablen...
+# Existing SMTP variables...
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
-SMTP_USER=deine-email@gmail.com
-SMTP_PASS=dein-app-passwort
-FROM_EMAIL=deine-email@gmail.com
-TO_EMAIL=empfaenger@example.com
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+FROM_EMAIL=your-email@gmail.com
+TO_EMAIL=recipient@example.com
 
-# NEU: reCAPTCHA Secret Key
-RECAPTCHA_SECRET_KEY=6Lc-DEIN-ECHTER-SECRET-KEY
+# NEW: reCAPTCHA Secret Key
+RECAPTCHA_SECRET_KEY=6Lc-YOUR-ACTUAL-SECRET-KEY
 ```
 
-## Schritt 5: Code zu GitHub pushen
+## Step 5: Push Code to GitHub
 
 ```bash
 git add .
@@ -76,67 +76,67 @@ git commit -m "Added reCAPTCHA v3 and Rate Limiting"
 git push origin master
 ```
 
-Netlify deployed automatisch!
+Netlify deploys automatically!
 
-## ✅ Testen
+## ✅ Testing
 
-1. Gehe zu: `https://formhandling-netlify.netlify.app`
-2. Fülle das Kontaktformular aus
-3. Sende ab
+1. Go to: `https://formhandling-netlify.netlify.app`
+2. Fill out the contact form
+3. Submit
 
-### Was passiert im Hintergrund:
+### What happens in the background:
 
-- ✅ **reCAPTCHA v3** validiert im Hintergrund (unsichtbar!)
-- ✅ **Rate Limiting** verhindert mehr als 5 Requests pro Stunde pro IP
-- ✅ **E-Mail** wird versendet
+- ✅ **reCAPTCHA v3** validates invisibly in the background
+- ✅ **Rate Limiting** prevents more than 5 requests per hour per IP
+- ✅ **Email** is sent
 
 ### Debugging:
 
-Schaue in die **Netlify Function Logs**:
+Check the **Netlify Function Logs**:
 1. Netlify Dashboard → **Functions** → `send-email`
-2. Klicke auf einen Deploy
-3. Schaue die Logs an
+2. Click on a deploy
+3. View the logs
 
-Du solltest sehen:
+You should see:
 ```
-reCAPTCHA Validierung: { success: true, score: 0.9 }
+reCAPTCHA validation: { success: true, score: 0.9 }
 Rate limit OK: { remaining: 4, resetTime: ... }
 Email sent successfully
 ```
 
-## 🎯 Was macht reCAPTCHA v3?
+## 🎯 What does reCAPTCHA v3 do?
 
-- **Unsichtbar**: Keine Checkboxen oder Captcha-Rätsel
-- **Score-basiert**: Gibt Score von 0.0 (Bot) bis 1.0 (Mensch)
-- **Schwellwert**: Wir blockieren Requests mit Score < 0.5
-- **Aktion**: Überwacht "submit" Action
+- **Invisible**: No checkboxes or captcha puzzles
+- **Score-based**: Provides score from 0.0 (bot) to 1.0 (human)
+- **Threshold**: We block requests with score < 0.5
+- **Action**: Monitors "submit" action
 
-## 🛡️ Was macht Rate Limiting?
+## 🛡️ What does Rate Limiting do?
 
-- **5 Requests pro Stunde** pro IP-Adresse
-- Nach 5 Requests: HTTP 429 Error
-- Reset nach 1 Stunde
-- Verhindert Spam-Attacken
+- **5 requests per hour** per IP address
+- After 5 requests: HTTP 429 Error
+- Resets after 1 hour
+- Prevents spam attacks
 
-## ⚠️ Hinweise
+## ⚠️ Notes
 
-### Für Production:
-- ✅ Füge deine echte Domain zu reCAPTCHA Domains hinzu
-- ✅ Setze Environment Variables in Netlify
-- ✅ Teste gründlich
+### For Production:
+- ✅ Add your actual domain to reCAPTCHA domains
+- ✅ Set environment variables in Netlify
+- ✅ Test thoroughly
 
-### Rate Limiting Limitierung:
-- Die In-Memory Lösung funktioniert für kleine Projekte
-- Bei viel Traffic: Nutze Redis oder Netlify Edge Functions mit KV Storage
-- Bei Serverless Functions wird der Store bei jedem Cold Start zurückgesetzt
+### Rate Limiting Limitations:
+- The in-memory solution works for small projects
+- For high traffic: Use Redis or Netlify Edge Functions with KV Storage
+- With Serverless Functions, the store resets on every cold start
 
-### Sicherheit:
-- ✅ Secret Key NIE in Git committen
-- ✅ Immer in .env oder Netlify Environment Variables
-- ✅ .env ist in .gitignore
+### Security:
+- ✅ NEVER commit Secret Key to Git
+- ✅ Always store in .env or Netlify Environment Variables
+- ✅ .env is in .gitignore
 
-## 🔗 Weitere Ressourcen
+## 🔗 Additional Resources
 
 - [reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin)
-- [reCAPTCHA v3 Dokumentation](https://developers.google.com/recaptcha/docs/v3)
+- [reCAPTCHA v3 Documentation](https://developers.google.com/recaptcha/docs/v3)
 - [Netlify Environment Variables Docs](https://docs.netlify.com/environment-variables/overview/)

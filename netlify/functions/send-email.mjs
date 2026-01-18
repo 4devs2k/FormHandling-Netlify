@@ -136,7 +136,6 @@ const validateRecaptcha = async (token) => {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
   if (!secretKey) {
-    console.warn("RECAPTCHA_SECRET_KEY not set - skipping");
     return { success: true, score: 1.0 };
   }
 
@@ -144,10 +143,8 @@ const validateRecaptcha = async (token) => {
 
   try {
     const data = await callRecaptchaApi(secretKey, token);
-    console.log("reCAPTCHA:", { success: data.success, score: data.score });
     return data;
   } catch (error) {
-    console.error("reCAPTCHA error:", error);
     return { success: false, error: error.message };
   }
 };
@@ -313,7 +310,6 @@ const processEmailRequest = async (body, formData) => {
   if (recaptchaError) return recaptchaError;
   checkEnvVariables();
   const info = await sendEmail(formData);
-  console.log("Email sent:", info.messageId);
   return buildSuccessResponse({
     message: "Email sent successfully",
     success: true,
@@ -376,13 +372,11 @@ const handleRecaptchaFailure = (score) => {
  * @returns {Promise<Object>} HTTP response object
  */
 export const handler = async (event) => {
-  console.log("=== Function Start ===");
   const methodError = validateHttpMethod(event.httpMethod);
   if (methodError) return methodError;
   try {
     return await handlePostRequest(event);
   } catch (error) {
-    console.error("Error:", error);
     return buildErrorResponse(500, "Internal server error", error.message);
   }
 };

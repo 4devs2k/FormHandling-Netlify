@@ -111,15 +111,12 @@ const getRecaptchaToken = async () => {
   try {
     const siteKey = getRecaptchaSiteKey();
     if (!isRecaptchaConfigured(siteKey)) {
-      console.warn("reCAPTCHA Site Key not configured yet");
       return null;
     }
 
     const token = await grecaptcha.execute(siteKey, { action: "submit" });
-    console.log("reCAPTCHA token received");
     return token;
   } catch (error) {
-    console.warn("reCAPTCHA error:", error);
     return null;
   }
 };
@@ -138,7 +135,6 @@ const sendFormData = async (formData, recaptchaToken) => {
     body: JSON.stringify({ ...formData, recaptchaToken }),
   });
 
-  console.log("Response Status:", response.status);
   return response;
 };
 
@@ -151,10 +147,8 @@ const sendFormData = async (formData, recaptchaToken) => {
 const parseResponse = async (response) => {
   try {
     const result = await response.json();
-    console.log("Response Data:", result);
     return result;
   } catch (error) {
-    console.error("JSON Parse Error:", error);
     throw new Error("Could not process server response");
   }
 };
@@ -206,7 +200,6 @@ const handleSubmitSuccess = (form, statusEl) => {
  * @param {HTMLElement} statusEl - Status element for error display
  */
 const handleSubmitError = (error, statusEl) => {
-  console.error("Form Submit Error:", error);
   showError(statusEl, `Error sending: ${getErrorMessage(error)}`);
 };
 
@@ -218,7 +211,6 @@ const handleSubmitError = (error, statusEl) => {
  */
 const submitFormToServer = async (formData) => {
   const recaptchaToken = await getRecaptchaToken();
-  console.log("Sending form data...", formData);
   const response = await sendFormData(formData, recaptchaToken);
   const result = await parseResponse(response);
   if (!response.ok) {

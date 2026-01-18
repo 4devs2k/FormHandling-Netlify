@@ -49,7 +49,7 @@ Every function must follow these **strict guidelines**:
  */
 const validateAndPrepareForm = (formData, statusEl) => {
   if (!isFormDataValid(formData)) {
-    showError(statusEl, "Bitte füllen Sie alle Felder aus.");
+    showError(statusEl, "Please fill in all fields.");
     return false;
   }
   return true;
