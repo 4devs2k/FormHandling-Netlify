@@ -1,0 +1,51 @@
+// ==========================================
+// BASE - Reset, Root Variables, Global Styles
+// ==========================================
+
+@use 'variables' as *;
+
+:root {
+  // Enable auto light/dark mode
+  color-scheme: light dark;
+
+  // Semantic colors using light-dark()
+  --bg-primary: light-dark(#{$light-bg-primary}, #{$dark-bg-primary});
+  --bg-secondary: light-dark(#{$light-bg-secondary}, #{$dark-bg-secondary});
+  --bg-card: light-dark(#{$light-bg-card}, #{$dark-bg-card});
+  --text-primary: light-dark(#{$light-text-primary}, #{$dark-text-primary});
+  --text-secondary: light-dark(#{$light-text-secondary}, #{$dark-text-secondary});
+  --border: light-dark(#{$light-border}, #{$dark-border});
+  --shadow: light-dark(#{$light-shadow}, #{$dark-shadow});
+  --shadow-hover: light-dark(#{$light-shadow-hover}, #{$dark-shadow-hover});
+
+  // Gradient colors
+  --gradient-start: #{$gradient-start};
+  --gradient-end: #{$gradient-end};
+
+  // Status colors
+  --success-bg: light-dark(#c6f6d5, #1b4721);
+  --success-border: light-dark(#48bb78, #3fb950);
+  --success-text: light-dark(#22543d, #3fb950);
+  --error-bg: light-dark(#fed7d7, #4a1a1a);
+  --error-border: light-dark(#f56565, #f85149);
+  --error-text: light-dark(#742a2a, #f85149);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-primary;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
+}

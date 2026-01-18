@@ -1,39 +1,121 @@
-# 📧 Kontaktformular mit Netlify Functions
+# 📧 Portfolio Landing Page with Contact Form
 
-Einfaches Kontaktformular mit E-Mail-Versand, reCAPTCHA v3 Spam-Schutz und Rate-Limiting.
+Modern portfolio landing page with serverless contact form, email delivery, reCAPTCHA v3 spam protection, and rate-limiting. Built with Sass, vanilla JavaScript, and deployed on Netlify.
 
 ## 🚀 Quick Start
 
-1. **Environment Variables in Netlify setzen:**
-   - `TO_EMAIL` - Deine E-Mail (Empfänger der Formular-Nachrichten)
-   - `FROM_EMAIL` - Absender-E-Mail
-   - `SMTP_HOST` - z.B. `smtp.gmail.com`
-   - `SMTP_PORT` - z.B. `465`
-   - `SMTP_USER` - Deine Gmail-Adresse
-   - `SMTP_PASS` - Gmail App-Passwort ([erstellen](https://myaccount.google.com/apppasswords))
-   - `RECAPTCHA_SECRET_KEY` - reCAPTCHA Secret Key ([erstellen](https://www.google.com/recaptcha/admin/create))
+### Development
 
-2. **reCAPTCHA Site Key in `index.html` einfügen:**
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Watch SCSS changes:**
+   ```bash
+   npm run sass:watch
+   ```
+
+3. **Build CSS:**
+   ```bash
+   npm run build
+   ```
+
+### Deployment
+
+1. **Environment Variables in Netlify:**
+   - `TO_EMAIL` - Your email (receives form submissions)
+   - `FROM_EMAIL` - Sender email address
+   - `SMTP_HOST` - e.g., `smtp.gmail.com`
+   - `SMTP_PORT` - e.g., `465`
+   - `SMTP_USER` - Your Gmail address
+   - `SMTP_PASS` - Gmail App Password ([create](https://myaccount.google.com/apppasswords))
+   - `RECAPTCHA_SECRET_KEY` - reCAPTCHA Secret Key ([create](https://www.google.com/recaptcha/admin/create))
+
+2. **Update reCAPTCHA Site Key in `index.html`:**
    ```html
-   <script src="https://www.google.com/recaptcha/api.js?render=DEIN_SITE_KEY"></script>
+   <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
    ```
 
 3. **Deploy:**
    ```bash
    git push origin master
    ```
-   Netlify deployed automatisch!
+   Netlify builds and deploys automatically!
 
 ## 🛡️ Features
 
-- ✅ E-Mail-Versand via Nodemailer
-- ✅ reCAPTCHA v3 (unsichtbarer Spam-Schutz)
-- ✅ Rate-Limiting (max. 5 Requests/Stunde/IP)
-- ✅ Responsive Design
+- ✅ Serverless email delivery via Netlify Functions + Nodemailer
+- ✅ reCAPTCHA v3 (invisible spam protection)
+- ✅ Rate-limiting (max 5 requests/hour/IP)
+- ✅ Auto light/dark mode with manual toggle
+- ✅ Modular Sass architecture
+- ✅ BEM methodology
+- ✅ 14-line function rule (clean code)
+- ✅ ES6+ modules
+- ✅ Local fonts (no CDN dependencies)
+- ✅ Responsive design (mobile-first)
 
-## 📖 Detaillierte Anleitung
+## 📁 Project Structure
 
-Siehe [RECAPTCHA_SETUP.md](RECAPTCHA_SETUP.md)
+```
+/
+├── scss/                      # Sass source files
+│   ├── _variables.scss        # Colors, spacing, breakpoints
+│   ├── _mixins.scss           # Responsive mixins
+│   ├── _base.scss             # Reset, root, global styles
+│   ├── _theme-toggle.scss     # Theme switcher component
+│   ├── _hero.scss             # Hero section
+│   ├── _demo.scss             # Contact form section
+│   ├── _features.scss         # Features grid
+│   ├── _tech-stack.scss       # Tech stack grid
+│   ├── _footer.scss           # Footer
+│   └── main.scss              # Master import file
+├── css/                       # Compiled CSS (gitignored)
+│   ├── main.css               # Generated from SCSS
+│   ├── comic.css              # Comic Neue font faces
+│   └── fontawesome.css        # Font Awesome 6.4.0
+├── assets/
+│   ├── fonts/                 # Local font files
+│   └── scheme/                # Theme toggle SVG icons
+├── netlify/functions/         # Serverless functions
+│   └── send-email.mjs         # Email handler
+├── index.html                 # Portfolio page
+├── script.js                  # Form handling
+├── theme-toggle.js            # Theme switcher
+└── package.json               # Dependencies & build scripts
+```
+
+## 🎨 Sass Development
+
+### Architecture
+
+The project uses **modern Sass (@use syntax)** with a modular architecture:
+
+- **Variables** (`_variables.scss`): Colors, spacing, breakpoints, transitions
+- **Mixins** (`_mixins.scss`): Responsive utilities (tablet, desktop, glass effect)
+- **Base** (`_base.scss`): CSS reset, root variables, global styles
+- **Components** (`_*.scss`): Individual sections (hero, features, footer, etc.)
+
+### Build Scripts
+
+```bash
+# Watch mode (auto-compile on save)
+npm run sass:watch
+
+# Single build (compressed, no source maps)
+npm run sass:build
+
+# Alias for sass:build
+npm run build
+```
+
+### Adding Styles
+
+1. Edit SCSS files in `/scss/`
+2. Run `npm run sass:watch` during development
+3. Compiled CSS outputs to `/css/main.css` (gitignored)
+4. Before commit, ensure SCSS is clean (CSS is generated on deploy)
 
 ## 🎨 Live Demo
 

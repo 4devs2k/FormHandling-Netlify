@@ -1,5 +1,19 @@
 {
+  "name": "formhandling-netlify",
+  "version": "1.0.0",
+  "description": "Serverless Contact Form with Netlify Functions",
+  "scripts": {
+    "sass:watch": "sass --watch scss:css --style compressed --no-source-map",
+    "sass:build": "sass scss:css --style compressed --no-source-map",
+    "build": "npm run sass:build"
+  },
+  "keywords": ["netlify", "serverless", "contact-form", "sass", "recaptcha"],
+  "author": "4devs2k",
+  "license": "MIT",
   "dependencies": {
     "nodemailer": "^7.0.6"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
   }
 }

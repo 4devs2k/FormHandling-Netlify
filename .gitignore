@@ -39,6 +39,10 @@ Thumbs.db
 /dist
 /bazel-out
 
+# Compiled CSS from SCSS
+/css/main.css
+style.css
+
 # Coverage reports
 # /coverage
 

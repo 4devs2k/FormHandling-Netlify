@@ -1,0 +1,70 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ==========================================
+// FOOTER
+// ==========================================
+
+.footer {
+  background: light-dark(#1a202c, #000000);
+  color: white;
+  padding: $spacing-xl $spacing-sm;
+  text-align: center;
+
+  @include tablet {
+    padding: 4rem $spacing-lg;
+  }
+
+  @include desktop {
+    padding: 5rem $spacing-lg;
+  }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__text {
+    margin-bottom: $spacing-md;
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: $transition-fast;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    align-items: center;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: center;
+      gap: $spacing-lg;
+    }
+
+    @include desktop {
+      gap: $spacing-xl;
+    }
+  }
+
+  &__link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: $transition-fast;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+
+    &:hover {
+      color: var(--gradient-start);
+      transform: translateY(-2px);
+    }
+  }
+}

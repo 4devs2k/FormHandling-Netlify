@@ -1,0 +1,53 @@
+// ==========================================
+// VARIABLES - Colors, Breakpoints, Spacing
+// ==========================================
+
+// Breakpoints
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Light mode colors
+$light-bg-primary: #ffffff;
+$light-bg-secondary: #f7fafc;
+$light-bg-card: #ffffff;
+$light-text-primary: #1a202c;
+$light-text-secondary: #718096;
+$light-border: #e2e8f0;
+$light-shadow: rgba(0, 0, 0, 0.05);
+$light-shadow-hover: rgba(0, 0, 0, 0.1);
+
+// Dark mode colors
+$dark-bg-primary: #0d0d0d;
+$dark-bg-secondary: #1a1a1a;
+$dark-bg-card: #1e1e1e;
+$dark-text-primary: #f0f0f0;
+$dark-text-secondary: #aaa;
+$dark-border: #333;
+$dark-shadow: rgba(0, 0, 0, 0.5);
+$dark-shadow-hover: rgba(0, 0, 0, 0.7);
+
+// Gradient colors (same in both modes)
+$gradient-start: #667eea;
+$gradient-end: #764ba2;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-xxl: 6rem;
+
+// Border radius
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-round: 50px;
+$radius-circle: 50%;
+
+// Transitions
+$transition-base: all 0.3s ease;
+$transition-fast: all 0.2s ease;
+
+// Typography - System Font Stack
+$font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;

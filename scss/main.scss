@@ -1,0 +1,21 @@
+// ==========================================
+// MAIN STYLESHEET
+// Modern Sass with @use instead of @import
+// ==========================================
+
+// 1. Variables & Mixins (must be first)
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// 2. Base styles
+@use 'base';
+
+// 3. Components
+@use 'theme-toggle';
+
+// 4. Sections
+@use 'hero';
+@use 'demo';
+@use 'features';
+@use 'tech-stack';
+@use 'footer';

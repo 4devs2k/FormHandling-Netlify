@@ -1,0 +1,58 @@
+@use 'variables' as *;
+
+// ==========================================
+// MIXINS - Responsive, Flexbox, etc.
+// ==========================================
+
+// Responsive breakpoints
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+// Flexbox center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox column center
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Glassmorphism effect
+@mixin glass($opacity: 0.9) {
+  backdrop-filter: blur(10px);
+  background: light-dark(rgba(255, 255, 255, $opacity), rgba(30, 30, 30, $opacity));
+}
+
+// Hover lift effect
+@mixin hover-lift($scale: 1.05, $shadow: 0 6px 20px rgba(0, 0, 0, 0.15)) {
+  transition: $transition-base;
+
+  &:hover {
+    transform: translateY(-3px) scale($scale);
+    box-shadow: $shadow;
+  }
+}
+
+// Card style
+@mixin card($padding: $spacing-lg) {
+  background: var(--bg-card);
+  border-radius: $radius-md;
+  padding: $padding;
+  box-shadow: 0 2px 8px var(--shadow);
+  border: 1px solid var(--border);
+}

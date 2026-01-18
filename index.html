@@ -1,55 +1,55 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Serverless Contact Form | Netlify Functions Demo</title>
     <meta
       name="description"
-      content="Modernes Kontaktformular mit Netlify Functions, reCAPTCHA v3 und Rate-Limiting"
+      content="Modern contact form with Netlify Functions, reCAPTCHA v3, and rate limiting"
     />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="css/comic.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/theme/favicon.svg" />
+    <!-- Comic Neue removed - using system fonts -->
     <link rel="stylesheet" href="css/fontawesome.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/main.css" />
     <!-- Google reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Ld4rE4sAAAAAKjCanjqlLNpwdx2aWyktDMCqZgn"></script>
   </head>
   <body>
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <img
-        src="assets/scheme/scheme-device.svg"
-        alt="Auto theme"
-        class="theme-toggle__icon"
-        id="themeIcon"
-      />
-    </button>
-
     <!-- Hero Section -->
     <section class="hero">
+      <!-- Theme Toggle Button -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <img
+          src="assets/scheme/scheme-device.svg"
+          alt="Auto theme"
+          class="theme-toggle__icon"
+          id="themeIcon"
+        />
+      </button>
+
       <div class="hero__container">
         <h1 class="hero__title">
-          <i class="fas fa-paper-plane hero__icon"></i>
+          <img src="assets/icons/mail.svg" alt="" class="hero__icon" />
           Serverless Contact Form
         </h1>
         <p class="hero__subtitle">
-          Modernes Kontaktformular mit Netlify Functions, reCAPTCHA v3 und
-          intelligentem Spam-Schutz
+          Modern contact form with Netlify Functions, reCAPTCHA v3, and
+          intelligent spam protection
         </p>
-        <a href="#demo" class="hero__cta">
-          <i class="fas fa-rocket"></i> Live Demo testen
-        </a>
+        <a href="#demo" class="hero__cta"> Try Live Demo </a>
       </div>
     </section>
 
     <!-- Demo Section -->
     <section id="demo" class="demo">
       <div class="demo__container">
-        <h2 class="demo__title"><i class="fas fa-envelope"></i> Live Demo</h2>
+        <h2 class="demo__title">
+          <img src="assets/icons/mail.svg" alt="" class="demo__icon" /> Live
+          Demo
+        </h2>
         <p class="demo__description">
-          Teste das Kontaktformular - alle Nachrichten werden per E-Mail
-          zugestellt.
+          Test the contact form - all messages are delivered via email.
         </p>
 
         <form id="contactForm" class="contact-form">
@@ -60,7 +60,7 @@
               id="name"
               name="name"
               class="contact-form__input"
-              placeholder="Dein Name"
+              placeholder="Your Name"
               required
             />
           </div>
@@ -72,37 +72,37 @@
               id="email"
               name="email"
               class="contact-form__input"
-              placeholder="deine@email.com"
+              placeholder="your@email.com"
               required
             />
           </div>
 
           <div class="contact-form__group">
-            <label for="subject" class="contact-form__label">Betreff</label>
+            <label for="subject" class="contact-form__label">Subject</label>
             <input
               type="text"
               id="subject"
               name="subject"
               class="contact-form__input"
-              placeholder="Worum geht es?"
+              placeholder="What is this about?"
               required
             />
           </div>
 
           <div class="contact-form__group">
-            <label for="message" class="contact-form__label">Nachricht</label>
+            <label for="message" class="contact-form__label">Message</label>
             <textarea
               id="message"
               name="message"
               rows="5"
               class="contact-form__textarea"
-              placeholder="Deine Nachricht..."
+              placeholder="Your message..."
               required
             ></textarea>
           </div>
 
           <button type="submit" class="contact-form__button">
-            <i class="fas fa-paper-plane"></i> Nachricht senden
+            <i class="fas fa-paper-plane"></i> Send Message
           </button>
         </form>
 
@@ -118,61 +118,61 @@
         <div class="features__grid">
           <div class="feature-card">
             <div class="feature-card__icon">
-              <i class="fas fa-server"></i>
+              <img src="assets/icons/server.svg" alt="" />
             </div>
             <h3 class="feature-card__title">Serverless Functions</h3>
             <p class="feature-card__description">
-              Netlify Functions für skalierbares Backend ohne Server-Verwaltung
+              Netlify Functions for scalable backend without server management
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card__icon">
-              <i class="fas fa-shield-alt"></i>
+              <img src="assets/icons/reCAPTCHA.svg" alt="" />
             </div>
             <h3 class="feature-card__title">reCAPTCHA v3</h3>
             <p class="feature-card__description">
-              Unsichtbarer Spam-Schutz mit Google reCAPTCHA v3 (Score-basiert)
+              Invisible spam protection with Google reCAPTCHA v3 (score-based)
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card__icon">
-              <i class="fas fa-stopwatch"></i>
+              <img src="assets/icons/rate-limiting.svg" alt="" />
             </div>
             <h3 class="feature-card__title">Rate Limiting</h3>
             <p class="feature-card__description">
-              Automatische Begrenzung auf 5 Anfragen pro Stunde pro IP-Adresse
+              Automatic limit of 5 requests per hour per IP address
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card__icon">
-              <i class="fas fa-envelope-open-text"></i>
+              <img src="assets/icons/modemailer.svg" alt="" />
             </div>
             <h3 class="feature-card__title">SMTP Integration</h3>
             <p class="feature-card__description">
-              Zuverlässiger E-Mail-Versand über Nodemailer mit SMTP
+              Reliable email delivery via Nodemailer with SMTP
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card__icon">
-              <i class="fas fa-mobile-alt"></i>
+              <img src="assets/icons/responsive.svg" alt="" />
             </div>
             <h3 class="feature-card__title">Responsive Design</h3>
             <p class="feature-card__description">
-              Mobile-First Design mit BEM-Methodik für alle Bildschirmgrößen
+              Mobile-first design with BEM methodology for all screen sizes
             </p>
           </div>
 
           <div class="feature-card">
             <div class="feature-card__icon">
-              <i class="fas fa-code"></i>
+              <img src="assets/icons/clean-code.svg" alt="" />
             </div>
             <h3 class="feature-card__title">Clean Code</h3>
             <p class="feature-card__description">
-              ES6+ Module, JSDoc-Dokumentation, max. 14 Zeilen pro Funktion
+              ES6+ modules, JSDoc documentation, max 14 lines per function
             </p>
           </div>
         </div>
@@ -186,32 +186,48 @@
 
         <div class="tech-stack__grid">
           <div class="tech-item">
-            <i class="fab fa-node-js tech-item__icon"></i>
+            <img src="assets/icons/nodejs.svg" alt="" class="tech-item__icon" />
             <div class="tech-item__name">Node.js</div>
           </div>
 
           <div class="tech-item">
-            <i class="fas fa-cloud tech-item__icon"></i>
+            <img
+              src="assets/icons/netlify.svg"
+              alt=""
+              class="tech-item__icon"
+            />
             <div class="tech-item__name">Netlify</div>
           </div>
 
           <div class="tech-item">
-            <i class="fab fa-js tech-item__icon"></i>
+            <img
+              src="assets/icons/javascript.svg"
+              alt=""
+              class="tech-item__icon"
+            />
             <div class="tech-item__name">ES6+</div>
           </div>
 
           <div class="tech-item">
-            <i class="fab fa-css3-alt tech-item__icon"></i>
-            <div class="tech-item__name">BEM CSS</div>
+            <img
+              src="assets/icons/node-sass.svg"
+              alt=""
+              class="tech-item__icon"
+            />
+            <div class="tech-item__name">Sass/BEM</div>
           </div>
 
           <div class="tech-item">
-            <i class="fas fa-envelope tech-item__icon"></i>
+            <img
+              src="assets/icons/modemailer.svg"
+              alt=""
+              class="tech-item__icon"
+            />
             <div class="tech-item__name">Nodemailer</div>
           </div>
 
           <div class="tech-item">
-            <i class="fab fa-google tech-item__icon"></i>
+            <img src="assets/icons/google.svg" alt="" class="tech-item__icon" />
             <div class="tech-item__name">reCAPTCHA</div>
           </div>
         </div>
@@ -221,28 +237,32 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="footer__container">
-        <p class="footer__text">
-          <i class="fas fa-code"></i> Built with ❤️ using Netlify Functions
-        </p>
+        <p class="footer__text">Built with ❤️ using Netlify Functions</p>
         <div class="footer__links">
           <a
             href="https://github.com/4devs2k/FormHandling-Netlify"
             target="_blank"
             class="footer__link"
           >
-            <i class="fab fa-github"></i> View on GitHub
+            <img src="assets/icons/github.svg" alt="" class="footer__icon" />
+            View on GitHub
           </a>
           <a
             href="https://github.com/4devs2k/FormHandling-Netlify/blob/master/CODE_STRUCTURE.md"
             target="_blank"
             class="footer__link"
           >
-            <i class="fas fa-book"></i> Documentation
+            <img
+              src="assets/icons/documentation.svg"
+              alt=""
+              class="footer__icon"
+            />
+            Documentation
           </a>
         </div>
       </div>
     </footer>
-    <script src="theme-toggle.js"></script>
-    <script src="/script.js"></script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

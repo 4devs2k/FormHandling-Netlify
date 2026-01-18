@@ -1,0 +1,81 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ==========================================
+// TECH STACK SECTION
+// ==========================================
+
+.tech-stack {
+  padding: 4rem $spacing-sm;
+  background: var(--bg-card);
+
+  @include tablet {
+    padding: 5rem $spacing-lg;
+  }
+
+  @include desktop {
+    padding: $spacing-xxl $spacing-lg;
+  }
+
+  &__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: $spacing-xl;
+
+    @include tablet {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+      gap: $spacing-lg;
+    }
+
+    @include desktop {
+      grid-template-columns: repeat(6, 1fr);
+      gap: $spacing-lg;
+    }
+  }
+}
+
+.tech-item {
+  background: var(--bg-secondary);
+  padding: $spacing-lg $spacing-sm;
+  border-radius: $radius-md;
+  text-align: center;
+  transition: $transition-base;
+  border: 2px solid var(--border);
+
+  &:hover {
+    border-color: var(--gradient-start);
+    transform: translateY(-3px);
+    background: var(--bg-card);
+  }
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto $spacing-sm;
+    display: block;
+  }
+
+  &__name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+    display: block;
+    margin-top: $spacing-xs;
+  }
+}

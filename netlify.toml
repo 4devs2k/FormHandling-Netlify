@@ -1,8 +1,8 @@
 [build]
   functions = "netlify/functions"
   publish = "."
-  # Installiere Dependencies auch im Functions-Ordner
-  command = "cd netlify/functions && npm install && cd ../.."
+  # Build SCSS and install Function dependencies
+  command = "npm run build && cd netlify/functions && npm install && cd ../.."
 
 [functions]
   # esbuild bundelt nodemailer MIT in die Function

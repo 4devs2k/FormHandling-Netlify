@@ -1,0 +1,172 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ==========================================
+// DEMO SECTION & CONTACT FORM
+// ==========================================
+
+.demo {
+  padding: $spacing-xl $spacing-sm;
+  background: var(--bg-card);
+
+  @include tablet {
+    padding: 5rem $spacing-lg;
+  }
+
+  @include desktop {
+    padding: $spacing-xxl $spacing-lg;
+  }
+
+  &__container {
+    max-width: 700px;
+    margin: 0 auto;
+
+    @include desktop {
+      max-width: 800px;
+    }
+  }
+
+  &__title {
+    font-size: 1.875rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: $spacing-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+
+    @include tablet {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+
+    @include tablet {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  &__description {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: $spacing-lg;
+    font-size: 1.125rem;
+  }
+}
+
+.contact-form {
+  background: var(--bg-secondary);
+  padding: $spacing-lg $spacing-md;
+  border-radius: $radius-md;
+  box-shadow: 0 4px 12px var(--shadow);
+
+  @include tablet {
+    padding: $spacing-xl 2.5rem;
+  }
+
+  @include desktop {
+    padding: $spacing-xl;
+  }
+
+  &__group {
+    margin-bottom: $spacing-md;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 0.875rem $spacing-sm;
+    border: 2px solid var(--border);
+    border-radius: $radius-sm;
+    font-size: 1rem;
+    font-family: $font-primary;
+    transition: $transition-fast;
+    background: var(--bg-card);
+    color: var(--text-primary);
+
+    &::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--gradient-start);
+      box-shadow: 0 0 0 3px light-dark(rgba(102, 126, 234, 0.1), rgba(102, 126, 234, 0.2));
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  &__button {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    color: white;
+    border: none;
+    padding: $spacing-sm;
+    border-radius: $radius-sm;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition-base;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    i {
+      margin-right: $spacing-xs;
+    }
+  }
+}
+
+.form-status {
+  margin-top: $spacing-md;
+  padding: $spacing-sm;
+  border-radius: $radius-sm;
+  text-align: center;
+  font-weight: 500;
+  display: none;
+
+  &--success {
+    display: block;
+    background: var(--success-bg);
+    border: 2px solid var(--success-border);
+    color: var(--success-text);
+  }
+
+  &--error {
+    display: block;
+    background: var(--error-bg);
+    border: 2px solid var(--error-border);
+    color: var(--error-text);
+  }
+
+  i {
+    margin-right: $spacing-xs;
+  }
+}

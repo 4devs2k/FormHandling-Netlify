@@ -56,7 +56,7 @@ const showError = (statusEl, message) => {
  */
 const showSuccess = (statusEl) => {
   statusEl.className = "form-status form-status--success";
-  statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Nachricht erfolgreich gesendet!';
+  statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully!';
 };
 
 /**
@@ -66,10 +66,10 @@ const showSuccess = (statusEl) => {
  */
 const setLoadingState = (btn, isLoading) => {
   if (isLoading) {
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sende...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     btn.disabled = true;
   } else {
-    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Nachricht senden';
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
     btn.disabled = false;
   }
 };
@@ -111,15 +111,15 @@ const getRecaptchaToken = async () => {
   try {
     const siteKey = getRecaptchaSiteKey();
     if (!isRecaptchaConfigured(siteKey)) {
-      console.warn("reCAPTCHA Site Key noch nicht konfiguriert");
+      console.warn("reCAPTCHA Site Key not configured yet");
       return null;
     }
 
     const token = await grecaptcha.execute(siteKey, { action: "submit" });
-    console.log("reCAPTCHA Token erhalten");
+    console.log("reCAPTCHA token received");
     return token;
   } catch (error) {
-    console.warn("reCAPTCHA Fehler:", error);
+    console.warn("reCAPTCHA error:", error);
     return null;
   }
 };
@@ -155,7 +155,7 @@ const parseResponse = async (response) => {
     return result;
   } catch (error) {
     console.error("JSON Parse Error:", error);
-    throw new Error("Serverantwort konnte nicht verarbeitet werden");
+    throw new Error("Could not process server response");
   }
 };
 
@@ -167,12 +167,12 @@ const parseResponse = async (response) => {
  */
 const getErrorMessage = (error) => {
   if (error.name === "TypeError" && error.message.includes("fetch")) {
-    return "Netzwerkfehler - bitte prüfen Sie Ihre Internetverbindung";
+    return "Network error - please check your internet connection";
   }
   if (error.message.includes("Zu viele Anfragen")) {
-    return "Zu viele Anfragen. Bitte warten Sie eine Stunde und versuchen Sie es erneut.";
+    return "Too many requests. Please wait one hour and try again.";
   }
-  return error.message || "Unbekannter Fehler beim Senden";
+  return error.message || "Unknown error while sending";
 };
 
 // === FORM HANDLER ===
@@ -184,7 +184,7 @@ const getErrorMessage = (error) => {
  */
 const validateAndPrepareForm = (formData, statusEl) => {
   if (!isFormDataValid(formData)) {
-    showError(statusEl, "Bitte füllen Sie alle Felder aus.");
+    showError(statusEl, "Please fill in all fields.");
     return false;
   }
   return true;
@@ -207,7 +207,7 @@ const handleSubmitSuccess = (form, statusEl) => {
  */
 const handleSubmitError = (error, statusEl) => {
   console.error("Form Submit Error:", error);
-  showError(statusEl, `Fehler beim Senden: ${getErrorMessage(error)}`);
+  showError(statusEl, `Error sending: ${getErrorMessage(error)}`);
 };
 
 /**
@@ -218,7 +218,7 @@ const handleSubmitError = (error, statusEl) => {
  */
 const submitFormToServer = async (formData) => {
   const recaptchaToken = await getRecaptchaToken();
-  console.log("Sende Formulardaten...", formData);
+  console.log("Sending form data...", formData);
   const response = await sendFormData(formData, recaptchaToken);
   const result = await parseResponse(response);
   if (!response.ok) {

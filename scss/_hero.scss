@@ -1,0 +1,105 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ==========================================
+// HERO SECTION
+// ==========================================
+
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  color: white;
+  padding: $spacing-xl $spacing-sm;
+  text-align: center;
+  min-height: 100vh;
+  @include flex-center;
+
+  @include tablet {
+    padding: 5rem $spacing-lg;
+  }
+
+  @include desktop {
+    padding: $spacing-xxl $spacing-lg;
+  }
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: $spacing-sm;
+    line-height: 1.2;
+
+    @include tablet {
+      font-size: 3rem;
+    }
+
+    @include desktop {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto $spacing-sm;
+    animation: float 3s ease-in-out infinite;
+
+    @include desktop {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.125rem;
+    margin-bottom: $spacing-lg;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include tablet {
+      font-size: 1.375rem;
+    }
+
+    @include desktop {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__cta {
+    display: inline-block;
+    background: white;
+    color: var(--gradient-start);
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $radius-round;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: $transition-base;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    i {
+      margin-right: $spacing-xs;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
