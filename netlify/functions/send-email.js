@@ -1,5 +1,77 @@
 const nodemailer = require("nodemailer");
 
+// Rate Limiting: In-Memory Store (einfache Lösung für Serverless)
+// Hinweis: Bei Production würde man Redis/DynamoDB nutzen
+const rateLimitStore = new Map();
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 Stunde in Millisekunden
+const MAX_REQUESTS_PER_WINDOW = 5; // Max 5 Requests pro Stunde pro IP
+
+// Rate Limiting Helper
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const userRequests = rateLimitStore.get(ip) || [];
+
+  // Entferne alte Requests außerhalb des Zeitfensters
+  const recentRequests = userRequests.filter(
+    timestamp => now - timestamp < RATE_LIMIT_WINDOW
+  );
+
+  if (recentRequests.length >= MAX_REQUESTS_PER_WINDOW) {
+    return {
+      allowed: false,
+      remaining: 0,
+      resetTime: new Date(recentRequests[0] + RATE_LIMIT_WINDOW)
+    };
+  }
+
+  // Füge neue Request hinzu
+  recentRequests.push(now);
+  rateLimitStore.set(ip, recentRequests);
+
+  return {
+    allowed: true,
+    remaining: MAX_REQUESTS_PER_WINDOW - recentRequests.length,
+    resetTime: new Date(now + RATE_LIMIT_WINDOW)
+  };
+}
+
+// reCAPTCHA Validierung
+async function validateRecaptcha(token) {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+
+  if (!secretKey) {
+    console.warn("RECAPTCHA_SECRET_KEY nicht gesetzt - reCAPTCHA wird übersprungen");
+    return { success: true, score: 1.0 }; // Fallback wenn nicht konfiguriert
+  }
+
+  if (!token) {
+    return { success: false, error: "reCAPTCHA Token fehlt" };
+  }
+
+  try {
+    const response = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `secret=${secretKey}&response=${token}`
+      }
+    );
+
+    const data = await response.json();
+    console.log("reCAPTCHA Validierung:", {
+      success: data.success,
+      score: data.score,
+      action: data.action
+    });
+
+    return data;
+  } catch (error) {
+    console.error("reCAPTCHA Validierungsfehler:", error);
+    return { success: false, error: error.message };
+  }
+}
+
 exports.handler = async (event, context) => {
   console.log("=== Function Start ===");
   console.log("Function called with method:", event.httpMethod);
@@ -10,6 +82,7 @@ exports.handler = async (event, context) => {
     SMTP_PASS: !!process.env.SMTP_PASS,
     FROM_EMAIL: !!process.env.FROM_EMAIL,
     TO_EMAIL: !!process.env.TO_EMAIL,
+    RECAPTCHA_SECRET_KEY: !!process.env.RECAPTCHA_SECRET_KEY,
   });
 
   // CORS Headers
@@ -38,6 +111,37 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
+
+  // Rate Limiting Check
+  const clientIP = event.headers['x-forwarded-for'] ||
+                   event.headers['client-ip'] ||
+                   'unknown';
+
+  console.log("Client IP:", clientIP);
+
+  const rateLimitResult = checkRateLimit(clientIP);
+
+  if (!rateLimitResult.allowed) {
+    console.log("Rate limit exceeded for IP:", clientIP);
+    return {
+      statusCode: 429,
+      headers: {
+        ...headers,
+        'X-RateLimit-Limit': MAX_REQUESTS_PER_WINDOW.toString(),
+        'X-RateLimit-Remaining': '0',
+        'X-RateLimit-Reset': rateLimitResult.resetTime.toISOString(),
+      },
+      body: JSON.stringify({
+        error: "Zu viele Anfragen. Bitte versuchen Sie es später erneut.",
+        resetTime: rateLimitResult.resetTime.toISOString()
+      }),
+    };
+  }
+
+  console.log("Rate limit OK:", {
+    remaining: rateLimitResult.remaining,
+    resetTime: rateLimitResult.resetTime
+  });
 
   try {
     // Formulardaten parsen
@@ -74,6 +178,35 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ error: "Alle Felder sind erforderlich" }),
       };
     }
+
+    // reCAPTCHA v3 Validierung
+    const recaptchaResult = await validateRecaptcha(body.recaptchaToken);
+
+    if (!recaptchaResult.success) {
+      console.log("reCAPTCHA validation failed:", recaptchaResult.error);
+      return {
+        statusCode: 403,
+        headers,
+        body: JSON.stringify({
+          error: "reCAPTCHA Validierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+        }),
+      };
+    }
+
+    // Prüfe reCAPTCHA Score (v3 gibt Score von 0.0 bis 1.0)
+    // 0.0 = sehr wahrscheinlich Bot, 1.0 = sehr wahrscheinlich Mensch
+    if (recaptchaResult.score && recaptchaResult.score < 0.5) {
+      console.log("reCAPTCHA score too low:", recaptchaResult.score);
+      return {
+        statusCode: 403,
+        headers,
+        body: JSON.stringify({
+          error: "Verdächtige Aktivität erkannt. Bitte kontaktieren Sie uns auf anderem Wege."
+        }),
+      };
+    }
+
+    console.log("reCAPTCHA validation passed, score:", recaptchaResult.score);
 
     // Umgebungsvariablen auslesen
     const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, FROM_EMAIL, TO_EMAIL } =

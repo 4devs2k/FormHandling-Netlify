@@ -27,6 +27,27 @@ document
     formStatus.textContent = "";
 
     try {
+      // reCAPTCHA v3 Token holen
+      let recaptchaToken = null;
+
+      if (typeof grecaptcha !== 'undefined') {
+        try {
+          // Hole Site Key aus dem Script-Tag
+          const recaptchaScript = document.querySelector('script[src*="recaptcha"]');
+          const siteKey = recaptchaScript?.src.match(/render=([^&]+)/)?.[1];
+
+          if (siteKey && siteKey !== 'DEIN_RECAPTCHA_SITE_KEY') {
+            recaptchaToken = await grecaptcha.execute(siteKey, { action: 'submit' });
+            console.log("reCAPTCHA Token erhalten");
+          } else {
+            console.warn("reCAPTCHA Site Key noch nicht konfiguriert");
+          }
+        } catch (recaptchaError) {
+          console.warn("reCAPTCHA Fehler:", recaptchaError);
+          // Fahre fort auch wenn reCAPTCHA fehlschlägt
+        }
+      }
+
       console.log("Sende Formulardaten...", { name, email, subject, message });
 
       const response = await fetch("/.netlify/functions/send-email", {
@@ -36,6 +57,7 @@ document
           email,
           subject,
           message,
+          recaptchaToken, // Token mitsenden
         }),
         headers: {
           "Content-Type": "application/json",
@@ -70,6 +92,8 @@ document
       if (error.name === "TypeError" && error.message.includes("fetch")) {
         errorMessage =
           "Netzwerkfehler - bitte prüfen Sie Ihre Internetverbindung";
+      } else if (error.message.includes("Zu viele Anfragen")) {
+        errorMessage = "Zu viele Anfragen. Bitte warten Sie eine Stunde und versuchen Sie es erneut.";
       } else if (error.message) {
         errorMessage = error.message;
       }
