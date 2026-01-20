@@ -1,5 +1,6 @@
 /**
  * @fileoverview Email template for contact form confirmation (sent to sender)
+ * @description Builds HTML confirmation email for sender
  * @module templates/confirmation
  */
 

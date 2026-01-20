@@ -13,12 +13,15 @@
 
 ## 🎯 Project Overview
 
-This project implements a contact form with Netlify Functions, featuring:
-- **Email delivery** via nodemailer
+This project implements a modern single-page application (SPA) with client-side routing and serverless backend, featuring:
+- **SPA Architecture** with History API routing
+- **Client-Side Routing** for multiple pages without reloads
+- **Component-Based Structure** with reusable templates
+- **Email delivery** via Netlify Functions and nodemailer
 - **reCAPTCHA v3** spam protection
 - **Rate limiting** (5 requests/hour/IP)
 - **BEM CSS** methodology
-- **ES6+ Modules** (.mjs)
+- **ES6+ Modules** (.mjs for backend, .js for frontend)
 - **Strict function rules** (max 14 lines)
 
 ---
@@ -163,7 +166,7 @@ document.querySelector('.contact-form__button')
 
 ```
 email-example/
-├── index.html                 # Main HTML (BEM classes)
+├── index.html                 # SPA container (single div#app)
 ├── scss/                      # Sass source files
 │   ├── main.scss              # Master import file (@use syntax)
 │   ├── _variables.scss        # Colors, spacing, breakpoints
@@ -174,16 +177,21 @@ email-example/
 │   ├── _demo.scss             # Contact form section
 │   ├── _features.scss         # Features grid
 │   ├── _tech-stack.scss       # Tech stack grid
-│   └── _footer.scss           # Footer
+│   ├── _content-pages.scss    # Content pages styling
+│   └── _footer.scss           # Footer with navigation
 ├── css/                       # Compiled CSS (gitignored)
 │   └── main.css               # Generated from SCSS
-├── js/                        # JavaScript files
-│   ├── script.js              # Client-side form handling (ES6+)
+├── js/                        # JavaScript ES6+ modules
+│   ├── app.js                 # SPA entry point, router init
+│   ├── router.js              # History API router
+│   ├── pages.js               # Page components (Home, Privacy, Sources, About)
+│   ├── components.js          # Shared components (Hero, Footer, ThemeToggle)
 │   └── theme-toggle.js        # Theme switcher logic
 ├── assets/
 │   ├── icons/                 # Custom SVG icons (15 files)
 │   ├── scheme/                # Theme toggle SVG icons
 │   └── theme/                 # Favicon
+├── netlify.toml               # Netlify config (SPA redirects)
 ├── README.md                  # Quick start guide
 ├── RECAPTCHA_SETUP.md         # reCAPTCHA configuration guide
 ├── CODE_STRUCTURE.md          # This file
@@ -199,14 +207,85 @@ email-example/
 
 ---
 
+## 🔀 SPA Architecture
+
+### Router System
+
+The application uses a **custom History API router** for clean URLs without hash symbols.
+
+**Key Components:**
+
+1. **`js/router.js`** - Router class
+   - Manages routes and navigation
+   - Handles browser back/forward buttons
+   - Intercepts link clicks with `data-link` attribute
+   - Scrolls to top on route change
+
+2. **`js/app.js`** - Application entry point
+   - Initializes router
+   - Registers all routes
+   - Handles page rendering
+   - Re-initializes dynamic components (theme toggle, form)
+
+3. **`js/pages.js`** - Page templates
+   - `HomePage()` - Main page with hero and contact form
+   - `PrivacyPolicyPage()` - Privacy policy
+   - `SourcesPage()` - Sources and credits
+   - `AboutPage()` - About project and developer
+   - `NotFoundPage()` - 404 error page
+
+4. **`js/components.js`** - Shared templates
+   - `getHero()` - Hero section (home only)
+   - `getThemeToggle()` - Theme toggle button
+   - `getFooter()` - Footer with navigation
+
+### Routes
+
+| Route | Component | Description |
+|-------|-----------|-------------|
+| `/` | `HomePage` | Contact form and features |
+| `/privacy-policy` | `PrivacyPolicyPage` | Privacy information |
+| `/sources` | `SourcesPage` | Credits and sources |
+| `/about` | `AboutPage` | About developer and project |
+| `/404` | `NotFoundPage` | Not found error |
+
+### Navigation Flow
+
+1. User clicks link with `data-link` attribute
+2. Router intercepts click event
+3. `router.navigate(path)` updates browser history
+4. `router.loadRoute(path)` renders page component
+5. `renderPage()` injects HTML into `#app` div
+6. Dynamic components re-initialize (theme, form)
+
+### Netlify SPA Support
+
+`netlify.toml` configuration:
+
+```toml
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+This enables:
+- Direct URL access (e.g., `/about`)
+- Page refresh support
+- Browser back/forward buttons
+- Proper 404 handling
+
+---
+
 ## 🔧 Technologies
 
 ### Frontend
 
-- **HTML5** - Semantic markup
+- **HTML5** - Semantic markup, SPA container
 - **Sass (SCSS)** - Modular CSS architecture with @use syntax
 - **CSS3** - BEM methodology, light-dark() function, responsive design
-- **JavaScript (ES6+)** - Modern syntax, arrow functions, modules
+- **JavaScript (ES6+)** - Modern syntax, arrow functions, ES6 modules
+- **History API** - Client-side routing with clean URLs
 - **Custom SVG Icons** - No external dependencies
 - **Google reCAPTCHA v3** - Invisible spam protection
 

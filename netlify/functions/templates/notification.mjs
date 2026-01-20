@@ -1,5 +1,6 @@
 /**
  * @fileoverview Email template for contact form notification (sent to recipient)
+ * @description Builds HTML email notification for form submission
  * @module templates/notification
  */
 

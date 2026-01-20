@@ -9,3 +9,9 @@
   node_bundler = "esbuild"
 
 # Netlify installiert automatisch npm dependencies aus package.json
+
+# SPA Redirects - route all paths to index.html for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -101,7 +101,14 @@ const setupThemeToggle = () => {
   }
 };
 
-// Initialize on DOM ready
+/**
+ * Re-initializes theme toggle after dynamic content load
+ */
+window.reinitThemeToggle = () => {
+  initTheme();
+  setupThemeToggle();
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   setupThemeToggle();
