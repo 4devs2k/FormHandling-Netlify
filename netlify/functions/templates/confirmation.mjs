@@ -31,9 +31,6 @@ export const buildConfirmationEmail = (name) => `
 
       <!-- Confirmation Message -->
       <div style="text-align: center; margin-bottom: 30px;">
-        <div style="background: #e6f0ff; border: 3px solid #667eea; border-radius: 50%; width: 80px; height: 80px; margin: 0 auto 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 40px;">
-          ✓
-        </div>
         <h2 style="margin: 0 0 15px; font-size: 24px; color: #1a202c;">Hi ${name}!</h2>
         <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4a5568;">
           I've received your message and will get back to you as soon as possible.
