@@ -56,12 +56,11 @@ body {
 // ==========================================
 
 .grecaptcha-badge {
-  bottom: 1rem !important;
-  transform: scale(0.77) !important;
-  transform-origin: bottom right !important;
+  // Hide on mobile to prevent stuck overlay
+  visibility: hidden !important;
 
+  // Show on desktop
   @media (min-width: 768px) {
-    bottom: 1rem !important;
-    transform: scale(1) !important;
+    visibility: visible !important;
   }
 }
