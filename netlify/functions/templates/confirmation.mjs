@@ -52,7 +52,7 @@ export const buildConfirmationEmail = (name) => `
         <p style="margin: 0 0 20px; font-size: 14px; color: #718096;">
           In the meantime, feel free to explore more of my work
         </p>
-        <a href="https://formhandling-netlify.netlify.app"
+        <a href="https://portfolio.dev2k.org " target="_blank" rel="noopener"
            style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);">
           Visit Portfolio
         </a>
