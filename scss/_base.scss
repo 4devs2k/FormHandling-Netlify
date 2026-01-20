@@ -56,14 +56,9 @@ body {
 // ==========================================
 
 .grecaptcha-badge {
-  z-index: 1000;
   bottom: 1rem !important;
-  transform: scale(0.8) !important;
+  transform: scale(0.77) !important;
   transform-origin: bottom right !important;
-
-  iframe {
-    pointer-events: auto !important;
-  }
 
   @media (min-width: 768px) {
     bottom: 1rem !important;
