@@ -163,21 +163,38 @@ document.querySelector('.contact-form__button')
 
 ```
 email-example/
-├── index.html              # Main HTML (BEM classes)
-├── style.css              # BEM CSS styles
-├── script.js              # Client-side logic (ES6+, max 14 lines/function)
-├── favicon.svg            # Custom favicon
-├── README.md              # Quick start guide
-├── RECAPTCHA_SETUP.md     # reCAPTCHA configuration guide
-├── CODE_STRUCTURE.md      # This file
-├── netlify.toml           # Netlify configuration
-├── package.json           # Root dependencies
-├── .gitignore            # Git ignore rules
-├── .env.example          # Example environment variables
+├── index.html                 # Main HTML (BEM classes)
+├── scss/                      # Sass source files
+│   ├── main.scss              # Master import file (@use syntax)
+│   ├── _variables.scss        # Colors, spacing, breakpoints
+│   ├── _mixins.scss           # Responsive mixins
+│   ├── _base.scss             # Reset, root, global styles
+│   ├── _theme-toggle.scss     # Theme switcher
+│   ├── _hero.scss             # Hero section
+│   ├── _demo.scss             # Contact form section
+│   ├── _features.scss         # Features grid
+│   ├── _tech-stack.scss       # Tech stack grid
+│   └── _footer.scss           # Footer
+├── css/                       # Compiled CSS (gitignored)
+│   └── main.css               # Generated from SCSS
+├── js/                        # JavaScript files
+│   ├── script.js              # Client-side form handling (ES6+)
+│   └── theme-toggle.js        # Theme switcher logic
+├── assets/
+│   ├── icons/                 # Custom SVG icons (15 files)
+│   ├── scheme/                # Theme toggle SVG icons
+│   └── theme/                 # Favicon
+├── README.md                  # Quick start guide
+├── RECAPTCHA_SETUP.md         # reCAPTCHA configuration guide
+├── CODE_STRUCTURE.md          # This file
+├── package.json               # Dependencies & scripts
+├── .gitignore                 # Git ignore rules
 └── netlify/
     └── functions/
-        ├── send-email.mjs      # Serverless function (ES6+ module)
-        └── package.json        # Function dependencies
+        ├── send-email.mjs         # Main serverless function
+        └── templates/             # Email HTML templates
+            ├── notification.mjs   # Recipient email template
+            └── confirmation.mjs   # Sender confirmation template
 ```
 
 ---
@@ -187,9 +204,10 @@ email-example/
 ### Frontend
 
 - **HTML5** - Semantic markup
-- **CSS3** - BEM methodology, responsive design
-- **JavaScript (ES6+)** - Modern syntax, arrow functions
-- **Font Awesome 6.4.0** - Icons
+- **Sass (SCSS)** - Modular CSS architecture with @use syntax
+- **CSS3** - BEM methodology, light-dark() function, responsive design
+- **JavaScript (ES6+)** - Modern syntax, arrow functions, modules
+- **Custom SVG Icons** - No external dependencies
 - **Google reCAPTCHA v3** - Invisible spam protection
 
 ### Backend (Netlify Functions)

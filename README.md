@@ -81,7 +81,10 @@ Modern portfolio landing page with serverless contact form, email delivery, reCA
 │   ├── script.js              # Form handling
 │   └── theme-toggle.js        # Theme switcher
 ├── netlify/functions/         # Serverless functions
-│   └── send-email.mjs         # Email handler
+│   ├── send-email.mjs         # Email handler (main function)
+│   └── templates/             # Email HTML templates
+│       ├── notification.mjs   # Recipient email template
+│       └── confirmation.mjs   # Sender confirmation template
 ├── index.html                 # Portfolio page
 └── package.json               # Dependencies & build scripts
 ```
