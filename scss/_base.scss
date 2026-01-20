@@ -40,6 +40,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -48,4 +49,24 @@ body {
   color: var(--text-primary);
   background: var(--bg-primary);
   min-height: 100vh;
+}
+
+// ==========================================
+// RECAPTCHA BADGE STYLING
+// ==========================================
+
+.grecaptcha-badge {
+  z-index: 1000;
+  bottom: 1rem !important;
+  transform: scale(0.8) !important;
+  transform-origin: bottom right !important;
+
+  iframe {
+    pointer-events: auto !important;
+  }
+
+  @media (min-width: 768px) {
+    bottom: 1rem !important;
+    transform: scale(1) !important;
+  }
 }
