@@ -94,4 +94,23 @@
     color: rgba(255, 255, 255, 0.3);
     user-select: none;
   }
+
+  &__recaptcha {
+    margin-top: $spacing-md;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    line-height: 1.5;
+
+    a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: $transition-fast;
+
+      &:hover {
+        color: var(--gradient-start);
+        text-decoration: underline;
+      }
+    }
+  }
 }

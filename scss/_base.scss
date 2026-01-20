@@ -56,11 +56,6 @@ body {
 // ==========================================
 
 .grecaptcha-badge {
-  // Hide on mobile to prevent stuck overlay
+  // Hide badge completely - we show text in footer instead
   visibility: hidden !important;
-
-  // Show on desktop
-  @media (min-width: 768px) {
-    visibility: visible !important;
-  }
 }

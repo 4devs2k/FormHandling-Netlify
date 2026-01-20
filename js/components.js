@@ -87,6 +87,11 @@ export const getFooter = () => {
           <span class="footer__separator">•</span>
           <a href="/" data-link class="footer__nav-link">Home</a>
         </nav>
+        <p class="footer__recaptcha">
+          This site is protected by reCAPTCHA and the Google
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.
+        </p>
       </div>
     </footer>
   `;
