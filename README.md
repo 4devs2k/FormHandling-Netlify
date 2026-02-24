@@ -2,16 +2,27 @@
 
 Modern single-page application (SPA) with serverless contact form, email delivery, reCAPTCHA v3 spam protection, and rate-limiting. Built with vanilla JavaScript ES6+, client-side routing, Sass, and deployed on Netlify.
 
-## 🚀 Quick Start
+## � Documentation
+
+| Dokument                                              | Beschreibung                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------------- |
+| [CODE_STRUCTURE.md](.github/docs/CODE_STRUCTURE.md)   | Coding standards, BEM, SPA architecture, development workflow |
+| [RECAPTCHA_SETUP.md](.github/docs/RECAPTCHA_SETUP.md) | reCAPTCHA v3 setup and environment variable configuration     |
+
+---
+
+## �🚀 Quick Start
 
 ### Development
 
 1. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 2. **Watch SCSS changes:**
+
    ```bash
    npm run sass:watch
    ```
@@ -33,6 +44,7 @@ Modern single-page application (SPA) with serverless contact form, email deliver
    - `RECAPTCHA_SECRET_KEY` - reCAPTCHA Secret Key ([create](https://www.google.com/recaptcha/admin/create))
 
 2. **Update reCAPTCHA Site Key in `index.html`:**
+
    ```html
    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
    ```
@@ -46,6 +58,7 @@ Modern single-page application (SPA) with serverless contact form, email deliver
 ## 🛡️ Features
 
 ### Core Features
+
 - ✅ **SPA with History API** - Clean URLs without hash symbols (`/privacy` instead of `#/privacy`)
 - ✅ **Client-Side Routing** - Multiple pages (Home, Privacy Policy, Sources, About) without page reloads
 - ✅ **Component-Based Architecture** - Reusable templates and modular structure
@@ -55,6 +68,7 @@ Modern single-page application (SPA) with serverless contact form, email deliver
 - ✅ Auto light/dark mode with manual toggle
 
 ### Code Quality
+
 - ✅ **14-line function rule** - Maximum 14 lines per function for maintainability
 - ✅ **ES6+ modules** - Modern JavaScript with import/export
 - ✅ **JSDoc documentation** - All functions fully documented
@@ -98,7 +112,11 @@ Modern single-page application (SPA) with serverless contact form, email deliver
 │       └── confirmation.mjs   # Sender confirmation template
 ├── netlify.toml               # Netlify config (SPA redirects)
 ├── index.html                 # SPA container
-└── package.json               # Dependencies & build scripts
+├── package.json               # Dependencies & build scripts
+└── .github/
+    └── docs/
+        ├── CODE_STRUCTURE.md  # Coding standards, BEM, SPA architecture
+        └── RECAPTCHA_SETUP.md # reCAPTCHA v3 setup guide
 ```
 
 ## 🎨 Sass Development
@@ -175,6 +193,7 @@ The application uses a custom History API router for clean URLs:
 ### Adding New Pages
 
 1. Create page component in `js/pages.js`:
+
    ```javascript
    export const NewPage = () => {
      return `
@@ -188,8 +207,9 @@ The application uses a custom History API router for clean URLs:
    ```
 
 2. Register route in `js/app.js`:
+
    ```javascript
-   router.addRoute('/new-page', () => renderPage(NewPage));
+   router.addRoute("/new-page", () => renderPage(NewPage));
    ```
 
 3. Add navigation link:

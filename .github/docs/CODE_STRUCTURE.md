@@ -14,6 +14,7 @@
 ## 🎯 Project Overview
 
 This project implements a modern single-page application (SPA) with client-side routing and serverless backend, featuring:
+
 - **SPA Architecture** with History API routing
 - **Client-Side Routing** for multiple pages without reloads
 - **Component-Based Structure** with reusable templates
@@ -96,7 +97,7 @@ All functions must have JSDoc comments:
 
 ### BEM Structure
 
-**Block__Element--Modifier**
+**Block\_\_Element--Modifier**
 
 - **Block:** Independent component (`.header`, `.contact-form`)
 - **Element:** Part of a block (`.header__title`, `.contact-form__input`)
@@ -106,17 +107,24 @@ All functions must have JSDoc comments:
 
 ```css
 /* Block */
-.contact-form { }
+.contact-form {
+}
 
 /* Element */
-.contact-form__group { }
-.contact-form__label { }
-.contact-form__input { }
-.contact-form__button { }
+.contact-form__group {
+}
+.contact-form__label {
+}
+.contact-form__input {
+}
+.contact-form__button {
+}
 
 /* Modifier */
-.form-status--success { }
-.form-status--error { }
+.form-status--success {
+}
+.form-status--error {
+}
 ```
 
 ### HTML Example
@@ -125,24 +133,22 @@ All functions must have JSDoc comments:
 <form class="contact-form">
   <div class="contact-form__group">
     <label class="contact-form__label">Name:</label>
-    <input class="contact-form__input" type="text">
+    <input class="contact-form__input" type="text" />
   </div>
   <button class="contact-form__button">Send</button>
 </form>
 
-<div class="form-status form-status--success">
-  Message sent!
-</div>
+<div class="form-status form-status--success">Message sent!</div>
 ```
 
 ### JavaScript Selectors
 
 ```javascript
 // ❌ Old (non-BEM)
-document.querySelector('.submit-btn')
+document.querySelector(".submit-btn");
 
 // ✅ BEM
-document.querySelector('.contact-form__button')
+document.querySelector(".contact-form__button");
 ```
 
 ### Blocks in this Project
@@ -193,10 +199,12 @@ email-example/
 │   └── theme/                 # Favicon
 ├── netlify.toml               # Netlify config (SPA redirects)
 ├── README.md                  # Quick start guide
-├── RECAPTCHA_SETUP.md         # reCAPTCHA configuration guide
-├── CODE_STRUCTURE.md          # This file
 ├── package.json               # Dependencies & scripts
 ├── .gitignore                 # Git ignore rules
+├── .github/
+│   └── docs/
+│       ├── CODE_STRUCTURE.md  # This file
+│       └── RECAPTCHA_SETUP.md # reCAPTCHA configuration guide
 └── netlify/
     └── functions/
         ├── send-email.mjs         # Main serverless function
@@ -241,13 +249,13 @@ The application uses a **custom History API router** for clean URLs without hash
 
 ### Routes
 
-| Route | Component | Description |
-|-------|-----------|-------------|
-| `/` | `HomePage` | Contact form and features |
-| `/privacy-policy` | `PrivacyPolicyPage` | Privacy information |
-| `/sources` | `SourcesPage` | Credits and sources |
-| `/about` | `AboutPage` | About developer and project |
-| `/404` | `NotFoundPage` | Not found error |
+| Route             | Component           | Description                 |
+| ----------------- | ------------------- | --------------------------- |
+| `/`               | `HomePage`          | Contact form and features   |
+| `/privacy-policy` | `PrivacyPolicyPage` | Privacy information         |
+| `/sources`        | `SourcesPage`       | Credits and sources         |
+| `/about`          | `AboutPage`         | About developer and project |
+| `/404`            | `NotFoundPage`      | Not found error             |
 
 ### Navigation Flow
 
@@ -270,6 +278,7 @@ The application uses a **custom History API router** for clean URLs without hash
 ```
 
 This enables:
+
 - Direct URL access (e.g., `/about`)
 - Page refresh support
 - Browser back/forward buttons
@@ -383,6 +392,7 @@ Currently minimal - add dev dependencies as needed.
 ```
 
 **Why separate package.json?**
+
 - Functions need their own dependencies
 - Cleaner bundling with esbuild
 - Faster cold starts
@@ -460,7 +470,7 @@ const handleFormSubmit = async (e) => {
 
 ```javascript
 // netlify/functions/send-email.mjs
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 const sendEmail = async (formData) => {
   // ... implementation
@@ -490,6 +500,7 @@ export const handler = async (event) => {
 - **1-hour window** with automatic cleanup
 
 **Limitation:** Memory resets on cold starts. For production, consider:
+
 - Redis
 - Netlify Edge Functions with KV Storage
 - Upstash Rate Limiting
@@ -548,16 +559,18 @@ export const handler = async (event) => {
 ### Debugging
 
 **Browser Console:**
+
 ```javascript
 // Check reCAPTCHA status
-typeof grecaptcha // should be "object"
+typeof grecaptcha; // should be "object"
 
 // Check site key extraction
 const script = document.querySelector('script[src*="api.js?render="]');
-script?.src.match(/render=([^&]+)/)?.[1]
+script?.src.match(/render=([^&]+)/)?.[1];
 ```
 
 **Netlify Function Logs:**
+
 1. Go to: https://app.netlify.com/sites/formhandling-netlify/functions
 2. Click on `send-email`
 3. View logs for errors

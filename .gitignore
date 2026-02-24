@@ -1,9 +1,9 @@
 # Dependencies
-# package-lock.json
+package-lock.json
 node_modules/
 
 # Development
-dev-server.js
+# dev-server.js
 
 # Environment files
 .env
@@ -17,7 +17,17 @@ dev-server.js
 .history/*
 
 # CI/CD
-.github/
+# Keep .github folder (workflows, docs)
+# Explicitly allow .github/docs/
+!.github/
+!.github/workflows/
+!.github/docs/
+
+# Generated documentation & reports
+# Ignore generated TypeDoc/JSDoc output in project root
+/docs/
+# But keep .github/docs/ (tracked above)
+/coverage
 
 # Logs
 *.log
@@ -43,16 +53,13 @@ Thumbs.db
 /css/main.css
 style.css
 
-# Coverage reports
-# /coverage
-
 # SSL certificates
 csr.pem
 privateKey.pem
 certificate.pem
 
 # Apache
-.htaccess
+# .htaccess
 
 # Runtime
 /connect.lock
