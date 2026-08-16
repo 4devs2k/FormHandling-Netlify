@@ -1,0 +1,4 @@
+node_modules/
+css/
+pnpm-lock.yaml
+netlify/functions/pnpm-lock.yaml

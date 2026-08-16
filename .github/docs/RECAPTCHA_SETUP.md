@@ -19,6 +19,7 @@
 You will receive two keys:
 
 - **Site Key** (public, for frontend)
+
   ```
   6Lc... (example)
   ```
@@ -93,11 +94,13 @@ Netlify deploys automatically!
 ### Debugging:
 
 Check the **Netlify Function Logs**:
+
 1. Netlify Dashboard → **Functions** → `send-email`
 2. Click on a deploy
 3. View the logs
 
 You should see:
+
 ```
 reCAPTCHA validation: { success: true, score: 0.9 }
 Rate limit OK: { remaining: 4, resetTime: ... }
@@ -121,16 +124,19 @@ Email sent successfully
 ## ⚠️ Notes
 
 ### For Production:
+
 - ✅ Add your actual domain to reCAPTCHA domains
 - ✅ Set environment variables in Netlify
 - ✅ Test thoroughly
 
 ### Rate Limiting Limitations:
+
 - The in-memory solution works for small projects
 - For high traffic: Use Redis or Netlify Edge Functions with KV Storage
 - With Serverless Functions, the store resets on every cold start
 
 ### Security:
+
 - ✅ NEVER commit Secret Key to Git
 - ✅ Always store in .env or Netlify Environment Variables
 - ✅ .env is in .gitignore

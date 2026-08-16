@@ -70,8 +70,7 @@ const cleanOldRequests = (requests, now) =>
  * @param {number[]} recentRequests - Array of recent request timestamps
  * @returns {boolean} True if limit exceeded
  */
-const isRateLimitExceeded = (recentRequests) =>
-  recentRequests.length >= MAX_REQUESTS_PER_WINDOW;
+const isRateLimitExceeded = (recentRequests) => recentRequests.length >= MAX_REQUESTS_PER_WINDOW;
 
 /**
  * Updates rate limit store with new request.
@@ -118,14 +117,11 @@ const checkRateLimit = (ip) => {
  * @returns {Promise<Object>} reCAPTCHA API response
  */
 const callRecaptchaApi = async (secretKey, token) => {
-  const response = await fetch(
-    "https://www.google.com/recaptcha/api/siteverify",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `secret=${secretKey}&response=${token}`,
-    },
-  );
+  const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `secret=${secretKey}&response=${token}`,
+  });
   return response.json();
 };
 
@@ -176,10 +172,7 @@ const createEmailTransporter = () => {
   if (typeof nodemailer.createTransport === "function") {
     return nodemailer.createTransport(config);
   }
-  if (
-    nodemailer.default &&
-    typeof nodemailer.default.createTransport === "function"
-  ) {
+  if (nodemailer.default && typeof nodemailer.default.createTransport === "function") {
     return nodemailer.default.createTransport(config);
   }
   throw new Error("nodemailer.createTransport not available");
@@ -196,12 +189,7 @@ const getMailOptions = (formData) => ({
   from: process.env.FROM_EMAIL,
   to: process.env.TO_EMAIL,
   subject: `Contact Form: ${formData.subject}`,
-  html: buildNotificationEmail(
-    formData.name,
-    formData.email,
-    formData.subject,
-    formData.message,
-  ),
+  html: buildNotificationEmail(formData.name, formData.email, formData.subject, formData.message),
   replyTo: formData.email,
 });
 
@@ -269,14 +257,7 @@ const validateFormData = (data) => {
  * @throws {Error} If any required environment variables are missing
  */
 const checkEnvVariables = () => {
-  const required = [
-    "SMTP_HOST",
-    "SMTP_PORT",
-    "SMTP_USER",
-    "SMTP_PASS",
-    "FROM_EMAIL",
-    "TO_EMAIL",
-  ];
+  const required = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "FROM_EMAIL", "TO_EMAIL"];
   const missing = required.filter((key) => !process.env[key]);
   if (missing.length > 0) {
     throw new Error(`Missing env vars: ${missing.join(", ")}`);
@@ -289,8 +270,7 @@ const checkEnvVariables = () => {
  * @param {Object} headers - Request headers
  * @returns {string} Client IP address
  */
-const getClientIP = (headers) =>
-  headers["x-forwarded-for"] || headers["client-ip"] || "unknown";
+const getClientIP = (headers) => headers["x-forwarded-for"] || headers["client-ip"] || "unknown";
 
 /**
  * Validates HTTP method and handles OPTIONS/non-POST requests.
@@ -357,7 +337,7 @@ const handleRateLimitExceeded = (resetTime) =>
       "X-RateLimit-Limit": MAX_REQUESTS_PER_WINDOW.toString(),
       "X-RateLimit-Remaining": "0",
       "X-RateLimit-Reset": resetTime.toISOString(),
-    },
+    }
   );
 
 /**

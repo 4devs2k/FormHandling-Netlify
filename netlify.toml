@@ -1,14 +1,12 @@
 [build]
   functions = "netlify/functions"
   publish = "."
-  # Build SCSS and install Function dependencies
-  command = "npm run build && cd netlify/functions && npm install && cd ../.."
+  # Build SCSS and install Function dependencies via pnpm
+  command = "corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm install --frozen-lockfile && pnpm run build && cd netlify/functions && pnpm install --frozen-lockfile && cd ../.."
 
 [functions]
   # esbuild bundelt nodemailer MIT in die Function
   node_bundler = "esbuild"
-
-# Netlify installiert automatisch npm dependencies aus package.json
 
 # SPA Redirects - route all paths to index.html for client-side routing
 [[redirects]]

@@ -8,15 +8,15 @@
  */
 
 const THEMES = {
-  AUTO: 'auto',
-  LIGHT: 'light',
-  DARK: 'dark'
+  AUTO: "auto",
+  LIGHT: "light",
+  DARK: "dark",
 };
 
 const THEME_ICONS = {
-  [THEMES.AUTO]: 'assets/scheme/scheme-device.svg',
-  [THEMES.LIGHT]: 'assets/scheme/scheme-light.svg',
-  [THEMES.DARK]: 'assets/scheme/scheme-dark.svg'
+  [THEMES.AUTO]: "assets/scheme/scheme-device.svg",
+  [THEMES.LIGHT]: "assets/scheme/scheme-light.svg",
+  [THEMES.DARK]: "assets/scheme/scheme-dark.svg",
 };
 
 /**
@@ -24,7 +24,7 @@ const THEME_ICONS = {
  * @returns {string} Current theme (auto/light/dark)
  */
 const getCurrentTheme = () => {
-  return localStorage.getItem('theme') || THEMES.AUTO;
+  return localStorage.getItem("theme") || THEMES.AUTO;
 };
 
 /**
@@ -45,7 +45,7 @@ const getNextTheme = (current) => {
 const applyTheme = (theme) => {
   const root = document.documentElement;
   if (theme === THEMES.AUTO) {
-    root.style.colorScheme = 'light dark';
+    root.style.colorScheme = "light dark";
   } else {
     root.style.colorScheme = theme;
   }
@@ -56,7 +56,7 @@ const applyTheme = (theme) => {
  * @param {string} theme - Current theme
  */
 const updateIcon = (theme) => {
-  const icon = document.getElementById('themeIcon');
+  const icon = document.getElementById("themeIcon");
   if (icon) {
     icon.src = THEME_ICONS[theme];
     icon.alt = `${theme} theme`;
@@ -68,7 +68,7 @@ const updateIcon = (theme) => {
  * @param {string} theme - Theme to save
  */
 const saveTheme = (theme) => {
-  localStorage.setItem('theme', theme);
+  localStorage.setItem("theme", theme);
 };
 
 /**
@@ -95,9 +95,9 @@ const initTheme = () => {
  * Sets up theme toggle button event listener
  */
 const setupThemeToggle = () => {
-  const button = document.getElementById('themeToggle');
+  const button = document.getElementById("themeToggle");
   if (button) {
-    button.addEventListener('click', handleThemeToggle);
+    button.addEventListener("click", handleThemeToggle);
   }
 };
 
@@ -109,7 +109,7 @@ window.reinitThemeToggle = () => {
   setupThemeToggle();
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   setupThemeToggle();
 });

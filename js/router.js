@@ -14,15 +14,15 @@ class Router {
     this.currentRoute = null;
 
     // Handle browser back/forward buttons
-    window.addEventListener('popstate', () => {
+    window.addEventListener("popstate", () => {
       this.loadRoute(window.location.pathname);
     });
 
     // Intercept all link clicks
-    document.addEventListener('click', (e) => {
-      if (e.target.matches('[data-link]')) {
+    document.addEventListener("click", (e) => {
+      if (e.target.matches("[data-link]")) {
         e.preventDefault();
-        this.navigate(e.target.getAttribute('href'));
+        this.navigate(e.target.getAttribute("href"));
       }
     });
   }
@@ -50,9 +50,9 @@ class Router {
    * @param {string} path - Path to load
    */
   loadRoute(path) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
-    const handler = this.routes[path] || this.routes['/404'];
+    const handler = this.routes[path] || this.routes["/404"];
 
     if (handler) {
       this.currentRoute = path;

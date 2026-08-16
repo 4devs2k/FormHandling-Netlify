@@ -4,19 +4,19 @@
 // ==========================================
 
 // 1. Variables & Mixins (must be first)
-@use 'variables' as *;
-@use 'mixins' as *;
+@use "variables" as *;
+@use "mixins" as *;
 
 // 2. Base styles
-@use 'base';
+@use "base";
 
 // 3. Components
-@use 'theme-toggle';
+@use "theme-toggle";
 
 // 4. Sections
-@use 'hero';
-@use 'demo';
-@use 'features';
-@use 'tech-stack';
-@use 'content-pages';
-@use 'footer';
+@use "hero";
+@use "demo";
+@use "features";
+@use "tech-stack";
+@use "content-pages";
+@use "footer";

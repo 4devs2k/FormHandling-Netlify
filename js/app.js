@@ -4,8 +4,8 @@
  * @module app
  */
 
-import Router from './router.js';
-import { HomePage, PrivacyPolicyPage, SourcesPage, AboutPage, NotFoundPage } from './pages.js';
+import Router from "./router.js";
+import { HomePage, PrivacyPolicyPage, SourcesPage, AboutPage, NotFoundPage } from "./pages.js";
 
 /**
  * Extracts form data from FormData object
@@ -13,10 +13,10 @@ import { HomePage, PrivacyPolicyPage, SourcesPage, AboutPage, NotFoundPage } fro
  * @returns {{name: string, email: string, subject: string, message: string}} Form data object
  */
 const extractFormData = (formData) => ({
-  name: formData.get('name')?.trim(),
-  email: formData.get('email')?.trim(),
-  subject: formData.get('subject')?.trim(),
-  message: formData.get('message')?.trim(),
+  name: formData.get("name")?.trim(),
+  email: formData.get("email")?.trim(),
+  subject: formData.get("subject")?.trim(),
+  message: formData.get("message")?.trim(),
 });
 
 /**
@@ -24,8 +24,7 @@ const extractFormData = (formData) => ({
  * @param {Object} data - Form data object
  * @returns {boolean} True if all fields are filled
  */
-const isFormDataValid = (data) =>
-  data.name && data.email && data.subject && data.message;
+const isFormDataValid = (data) => data.name && data.email && data.subject && data.message;
 
 /**
  * Shows error message in status element
@@ -33,7 +32,7 @@ const isFormDataValid = (data) =>
  * @param {string} message - Error message
  */
 const showError = (status, message) => {
-  status.className = 'form-status form-status--error';
+  status.className = "form-status form-status--error";
   status.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
 };
 
@@ -43,7 +42,7 @@ const showError = (status, message) => {
  * @param {HTMLFormElement} form - Form to reset
  */
 const showSuccess = (status, form) => {
-  status.className = 'form-status form-status--success';
+  status.className = "form-status form-status--success";
   status.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully!';
   form.reset();
 };
@@ -68,8 +67,8 @@ const setLoadingState = (btn, loading) => {
  * @param {HTMLElement} status - Status element
  */
 const clearStatus = (status) => {
-  status.className = 'form-status';
-  status.textContent = '';
+  status.className = "form-status";
+  status.textContent = "";
 };
 
 /**
@@ -79,9 +78,9 @@ const clearStatus = (status) => {
  * @returns {Promise<Response>} Fetch response
  */
 const sendFormData = async (data, token) => {
-  return await fetch('/.netlify/functions/send-email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  return await fetch("/.netlify/functions/send-email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...data, recaptchaToken: token }),
   });
 };
@@ -114,11 +113,11 @@ const getRecaptchaSiteKey = () => {
  * @returns {Promise<string|null>} Token or null
  */
 const getRecaptchaToken = async () => {
-  if (typeof grecaptcha === 'undefined') return null;
+  if (typeof grecaptcha === "undefined") return null;
   try {
     const siteKey = getRecaptchaSiteKey();
-    if (!siteKey || siteKey === 'DEIN_RECAPTCHA_SITE_KEY') return null;
-    return await grecaptcha.execute(siteKey, { action: 'submit' });
+    if (!siteKey || siteKey === "DEIN_RECAPTCHA_SITE_KEY") return null;
+    return await grecaptcha.execute(siteKey, { action: "submit" });
   } catch (error) {
     return null;
   }
@@ -131,8 +130,8 @@ const getRecaptchaToken = async () => {
  */
 const getFormElements = (form) => ({
   form,
-  status: document.getElementById('formStatus'),
-  submitBtn: document.querySelector('.contact-form__button'),
+  status: document.getElementById("formStatus"),
+  submitBtn: document.querySelector(".contact-form__button"),
 });
 
 /**
@@ -168,7 +167,7 @@ const handleFormSubmit = async (e) => {
   e.preventDefault();
   const { form, status, submitBtn } = getFormElements(e.target);
   const data = extractFormData(new FormData(form));
-  if (!isFormDataValid(data)) return showError(status, 'Please fill in all fields.');
+  if (!isFormDataValid(data)) return showError(status, "Please fill in all fields.");
   prepareFormSubmission(submitBtn, status);
   try {
     await submitFormData(data, status, form);
@@ -184,9 +183,9 @@ const handleFormSubmit = async (e) => {
  * @returns {void}
  */
 const initContactForm = () => {
-  const form = document.getElementById('contactForm');
+  const form = document.getElementById("contactForm");
   if (!form) return;
-  form.addEventListener('submit', handleFormSubmit);
+  form.addEventListener("submit", handleFormSubmit);
 };
 
 /**
@@ -194,10 +193,10 @@ const initContactForm = () => {
  * @param {Function} pageComponent - Page component function
  */
 const renderPage = (pageComponent) => {
-  const app = document.getElementById('app');
+  const app = document.getElementById("app");
   app.innerHTML = pageComponent();
 
-  if (typeof window.reinitThemeToggle === 'function') {
+  if (typeof window.reinitThemeToggle === "function") {
     window.reinitThemeToggle();
   }
 
@@ -206,14 +205,14 @@ const renderPage = (pageComponent) => {
 
 const router = new Router();
 
-router.addRoute('/', () => renderPage(HomePage));
-router.addRoute('/privacy-policy', () => renderPage(PrivacyPolicyPage));
-router.addRoute('/sources', () => renderPage(SourcesPage));
-router.addRoute('/about', () => renderPage(AboutPage));
-router.addRoute('/404', () => renderPage(NotFoundPage));
+router.addRoute("/", () => renderPage(HomePage));
+router.addRoute("/privacy-policy", () => renderPage(PrivacyPolicyPage));
+router.addRoute("/sources", () => renderPage(SourcesPage));
+router.addRoute("/about", () => renderPage(AboutPage));
+router.addRoute("/404", () => renderPage(NotFoundPage));
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => router.init());
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => router.init());
 } else {
   router.init();
 }
