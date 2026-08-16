@@ -373,7 +373,7 @@ export const AboutPage = () => {
         <div class="content-page__content">
           <h2>About Me</h2>
           <p>
-            Hi, I'm <strong>Konstantin Aksenov</strong> – a passionate software developer
+            Hi, I'm <strong>Konstantin Aksenov</strong> - a passionate software developer
             specializing in modern web applications, from user interfaces to server infrastructure.
           </p>
           <p>
