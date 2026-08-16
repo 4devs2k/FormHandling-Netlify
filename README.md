@@ -1,36 +1,40 @@
-# 📧 Portfolio Landing Page with Contact Form
+# FormHandling-Netlify
 
-Modern single-page application (SPA) with serverless contact form, email delivery, reCAPTCHA v3 spam protection, and rate-limiting. Built with vanilla JavaScript ES6+, client-side routing, Sass, and deployed on Netlify.
-
-## � Documentation
-
-| Dokument                                              | Beschreibung                                                  |
-| ----------------------------------------------------- | ------------------------------------------------------------- |
-| [CODE_STRUCTURE.md](.github/docs/CODE_STRUCTURE.md)   | Coding standards, BEM, SPA architecture, development workflow |
-| [RECAPTCHA_SETUP.md](.github/docs/RECAPTCHA_SETUP.md) | reCAPTCHA v3 setup and environment variable configuration     |
+Modern single-page application (SPA) with serverless contact form, email delivery, reCAPTCHA v3
+spam protection, and rate-limiting. Vanilla JavaScript ES6+, client-side routing, Sass, deployed
+on Netlify.
 
 ---
 
-## �🚀 Quick Start
+## Live
 
-### Development
+| Environment | URL                                                                      |
+| ----------- | ------------------------------------------------------------------------ |
+| **App**     | [formhandling.dev2ksoftware.com](https://formhandling.dev2ksoftware.com) |
 
-1. **Install dependencies:**
+---
 
-   ```bash
-   npm install
-   ```
+## Core Features
 
-2. **Watch SCSS changes:**
+- SPA with History API - clean URLs without hash symbols (`/privacy` instead of `#/privacy`)
+- Client-side routing - multiple pages (Home, Privacy Policy, Sources, About) without page reloads
+- Component-based architecture - reusable templates and modular structure
+- Serverless email delivery via Netlify Functions + Nodemailer
+- reCAPTCHA v3 (invisible spam protection)
+- Rate-limiting (max 5 requests/hour/IP)
+- Auto light/dark mode with manual toggle
+- 14-line function rule, ES6+ modules, JSDoc on all functions, BEM CSS methodology
+- Custom SVG icons (no external icon dependency), responsive mobile-first design
 
-   ```bash
-   npm run sass:watch
-   ```
+## Quick Start / Local Development
 
-3. **Build CSS:**
-   ```bash
-   npm run build
-   ```
+```bash
+pnpm install
+pnpm run sass:watch
+```
+
+Compiled CSS outputs to `/css/main.css` (gitignored). `pnpm run build` compiles once
+(compressed, no source maps).
 
 ### Deployment
 
@@ -50,36 +54,17 @@ Modern single-page application (SPA) with serverless contact form, email deliver
    ```
 
 3. **Deploy:**
+
    ```bash
    git push origin master
    ```
-   Netlify builds and deploys automatically!
 
-## 🛡️ Features
+   Netlify builds and deploys automatically (`netlify.toml` handles pnpm setup for both the
+   root app and the Functions package).
 
-### Core Features
+## Structure
 
-- ✅ **SPA with History API** - Clean URLs without hash symbols (`/privacy` instead of `#/privacy`)
-- ✅ **Client-Side Routing** - Multiple pages (Home, Privacy Policy, Sources, About) without page reloads
-- ✅ **Component-Based Architecture** - Reusable templates and modular structure
-- ✅ Serverless email delivery via Netlify Functions + Nodemailer
-- ✅ reCAPTCHA v3 (invisible spam protection)
-- ✅ Rate-limiting (max 5 requests/hour/IP)
-- ✅ Auto light/dark mode with manual toggle
-
-### Code Quality
-
-- ✅ **14-line function rule** - Maximum 14 lines per function for maintainability
-- ✅ **ES6+ modules** - Modern JavaScript with import/export
-- ✅ **JSDoc documentation** - All functions fully documented
-- ✅ **BEM methodology** - Clean, maintainable CSS
-- ✅ Modular Sass architecture
-- ✅ Custom SVG icons (no external dependencies)
-- ✅ Responsive design (mobile-first)
-
-## 📁 Project Structure
-
-```
+```text
 /
 ├── scss/                      # Sass source files
 │   ├── _variables.scss        # Colors, spacing, breakpoints
@@ -105,12 +90,12 @@ Modern single-page application (SPA) with serverless contact form, email deliver
 │   ├── pages.js               # Page components (Home, Privacy, Sources, About)
 │   ├── components.js          # Shared components (Hero, Footer, ThemeToggle)
 │   └── theme-toggle.js        # Theme switcher logic
-├── netlify/functions/         # Serverless functions
+├── netlify/functions/         # Serverless functions (own pnpm-lock.yaml, bundled via esbuild)
 │   ├── send-email.mjs         # Email handler (main function)
 │   └── templates/             # Email HTML templates
 │       ├── notification.mjs   # Recipient email template
 │       └── confirmation.mjs   # Sender confirmation template
-├── netlify.toml               # Netlify config (SPA redirects)
+├── netlify.toml               # Netlify config (pnpm build, SPA redirects)
 ├── index.html                 # SPA container
 ├── package.json               # Dependencies & build scripts
 └── .github/
@@ -119,76 +104,45 @@ Modern single-page application (SPA) with serverless contact form, email deliver
         └── RECAPTCHA_SETUP.md # reCAPTCHA v3 setup guide
 ```
 
-## 🎨 Sass Development
+## Sass Development
 
-### Architecture
-
-The project uses **modern Sass (@use syntax)** with a modular architecture:
+The project uses **modern Sass (`@use` syntax)** with a modular architecture:
 
 - **Variables** (`_variables.scss`): Colors, spacing, breakpoints, transitions
 - **Mixins** (`_mixins.scss`): Responsive utilities (tablet, desktop, glass effect)
 - **Base** (`_base.scss`): CSS reset, root variables, global styles
 - **Components** (`_*.scss`): Individual sections (hero, features, footer, content-pages, etc.)
 
-### Build Scripts
-
 ```bash
-# Watch mode (auto-compile on save)
-npm run sass:watch
-
-# Single build (compressed, no source maps)
-npm run sass:build
-
-# Alias for sass:build
-npm run build
+pnpm run sass:watch    # Watch mode (auto-compile on save)
+pnpm run sass:build    # Single build (compressed, no source maps)
+pnpm run build         # Alias for sass:build
 ```
 
-### Adding Styles
+Edit SCSS files in `/scss/`, compiled CSS outputs to `/css/main.css` (gitignored) - CSS is
+generated on deploy, not committed.
 
-1. Edit SCSS files in `/scss/`
-2. Run `npm run sass:watch` during development
-3. Compiled CSS outputs to `/css/main.css` (gitignored)
-4. Before commit, ensure SCSS is clean (CSS is generated on deploy)
-
-## 🔀 SPA Architecture
+## SPA Architecture
 
 ### Router System
 
-The application uses a custom History API router for clean URLs:
+Custom History API router for clean URLs:
 
-- **Routes:**
-  - `/` - Home page with contact form
-  - `/privacy-policy` - Privacy policy
-  - `/sources` - Sources and credits
-  - `/about` - About project and developer
-  - `/404` - Not found page
-
-- **Key Files:**
-  - `js/router.js` - Router implementation with History API
-  - `js/app.js` - Application initialization and route registration
-  - `js/pages.js` - Page component templates
-  - `js/components.js` - Shared components (Hero, Footer, ThemeToggle)
+- **Routes:** `/` (Home + contact form), `/privacy-policy`, `/sources`, `/about`, `/404`
+- **Key Files:** `js/router.js` (router implementation), `js/app.js` (init + route registration),
+  `js/pages.js` (page templates), `js/components.js` (shared components: Hero, Footer,
+  ThemeToggle)
 
 ### How It Works
 
-1. **Router initialization** (`app.js`):
-   - Registers all routes
-   - Handles initial page load
-   - Sets up link interception
-
-2. **Navigation**:
-   - Links with `data-link` attribute trigger client-side routing
-   - Browser back/forward buttons work correctly
-   - Page scrolls to top on route change
-
-3. **Page rendering**:
-   - Content is injected into `<div id="app"></div>`
-   - Theme toggle re-initializes after render
-   - Contact form listeners attach on home page
-
-4. **Netlify Redirects**:
-   - `netlify.toml` redirects all paths to `/index.html`
-   - Enables direct URL access and page refresh support
+1. **Router initialization** (`app.js`): registers all routes, handles initial page load, sets
+   up link interception.
+2. **Navigation**: links with `data-link` attribute trigger client-side routing, browser
+   back/forward buttons work correctly, page scrolls to top on route change.
+3. **Page rendering**: content is injected into `<div id="app"></div>`, theme toggle
+   re-initializes after render, contact form listeners attach on the home page.
+4. **Netlify Redirects**: `netlify.toml` redirects all paths to `/index.html`, enabling direct
+   URL access and page-refresh support.
 
 ### Adding New Pages
 
@@ -213,10 +167,25 @@ The application uses a custom History API router for clean URLs:
    ```
 
 3. Add navigation link:
+
    ```html
    <a href="/new-page" data-link>New Page</a>
    ```
 
-## 🎨 Live Demo
+## Documentation
 
-https://formhandling-netlify.netlify.app
+| Document                                              | Description                                                   |
+| ----------------------------------------------------- | ------------------------------------------------------------- |
+| [CODE_STRUCTURE.md](.github/docs/CODE_STRUCTURE.md)   | Coding standards, BEM, SPA architecture, development workflow |
+| [RECAPTCHA_SETUP.md](.github/docs/RECAPTCHA_SETUP.md) | reCAPTCHA v3 setup and environment variable configuration     |
+
+## License
+
+MIT
+
+## Developer
+
+Konstantin Aksenov
+GitHub: https://github.com/KosMaster87
+Email: konstantin@dev2ksoftware.com
+Portfolio: https://portfolio.dev2ksoftware.com

@@ -3,7 +3,7 @@
  * @description Individual page templates for routing
  */
 
-import { getHero, getThemeToggle, getFooter } from './components.js';
+import { getHero, getThemeToggle, getFooter } from "./components.js";
 
 /**
  * Home page with demo form
@@ -229,7 +229,7 @@ export const PrivacyPolicyPage = () => {
           </p>
           <ul>
             <li>Konstantin Aksenov</li>
-            <li>konstantin.aksenov@dev2k.org</li>
+            <li>konstantin@dev2ksoftware.com</li>
           </ul>
 
           <h2>Data Usage</h2>
@@ -443,13 +443,13 @@ export const AboutPage = () => {
             or connect with me on
             <a href="https://www.linkedin.com/in/konstantin-aksenov-802b88190/" target="_blank" rel="noopener">LinkedIn</a>.
             You can also reach me at
-            <a href="mailto:konstantin.aksenov@dev2k.org">konstantin.aksenov@dev2k.org</a>.
+            <a href="mailto:konstantin@dev2ksoftware.com">konstantin@dev2ksoftware.com</a>.
           </p>
 
           <h2>Portfolio</h2>
           <p>
             View my complete portfolio with more projects at
-            <a href="https://portfolio.dev2k.org" target="_blank" rel="noopener">Portfolio</a>.
+            <a href="https://portfolio.dev2ksoftware.com" target="_blank" rel="noopener">Portfolio</a>.
           </p>
         </div>
       </div>
