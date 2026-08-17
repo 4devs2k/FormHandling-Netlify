@@ -1,6 +1,6 @@
-# 🏗️ Code Structure & Guidelines
+# Code Structure & Guidelines
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Project Overview](#project-overview)
 - [Coding Standards](#coding-standards)
@@ -11,7 +11,7 @@
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 This project implements a modern single-page application (SPA) with client-side routing and serverless backend, featuring:
 
@@ -27,20 +27,20 @@ This project implements a modern single-page application (SPA) with client-side 
 
 ---
 
-## 📏 Coding Standards
+## Coding Standards
 
 ### 1. Function Rules
 
 Every function must follow these **strict guidelines**:
 
-- ✅ **Maximum 14 lines** per function
-- ✅ **One clear task** per function
-- ✅ **No nested functions** (extract to separate functions)
-- ✅ **Split complex logic** into helper functions
-- ✅ **Arrow functions** preferred (except constructors/event handlers)
-- ✅ **Descriptive names:** Short and concise (3-5 words max)
-- ✅ **camelCase naming:** `getUserById`, not `Get_User_By_ID`
-- ✅ **JSDoc documentation** for all functions
+- **Maximum 14 lines** per function
+- **One clear task** per function
+- **No nested functions** (extract to separate functions)
+- **Split complex logic** into helper functions
+- **Arrow functions** preferred (except constructors/event handlers)
+- **Descriptive names:** Short and concise (3-5 words max)
+- **camelCase naming:** `getUserById`, not `Get_User_By_ID`
+- **JSDoc documentation** for all functions
 
 **Example:**
 
@@ -69,11 +69,11 @@ const validateAndPrepareForm = (formData, statusEl) => {
 **Example:**
 
 ```javascript
-// ❌ CommonJS (old)
+// CommonJS (old)
 const nodemailer = require('nodemailer');
 exports.handler = async (event) => { ... };
 
-// ✅ ES6+ (new)
+// ES6+ (new)
 import nodemailer from 'nodemailer';
 export const handler = async (event) => { ... };
 ```
@@ -93,7 +93,7 @@ All functions must have JSDoc comments:
 
 ---
 
-## 🎨 BEM Methodology
+## BEM Methodology
 
 ### BEM Structure
 
@@ -144,10 +144,10 @@ All functions must have JSDoc comments:
 ### JavaScript Selectors
 
 ```javascript
-// ❌ Old (non-BEM)
+// Old (non-BEM)
 document.querySelector(".submit-btn");
 
-// ✅ BEM
+// BEM
 document.querySelector(".contact-form__button");
 ```
 
@@ -168,54 +168,54 @@ document.querySelector(".contact-form__button");
 
 ---
 
-## 📁 File Structure
+## File Structure
 
 ```
 email-example/
-├── index.html                 # SPA container (single div#app)
-├── scss/                      # Sass source files
-│   ├── main.scss              # Master import file (@use syntax)
-│   ├── _variables.scss        # Colors, spacing, breakpoints
-│   ├── _mixins.scss           # Responsive mixins
-│   ├── _base.scss             # Reset, root, global styles
-│   ├── _theme-toggle.scss     # Theme switcher
-│   ├── _hero.scss             # Hero section
-│   ├── _demo.scss             # Contact form section
-│   ├── _features.scss         # Features grid
-│   ├── _tech-stack.scss       # Tech stack grid
-│   ├── _content-pages.scss    # Content pages styling
-│   └── _footer.scss           # Footer with navigation
-├── css/                       # Compiled CSS (gitignored)
-│   └── main.css               # Generated from SCSS
-├── js/                        # JavaScript ES6+ modules
-│   ├── app.js                 # SPA entry point, router init
-│   ├── router.js              # History API router
-│   ├── pages.js               # Page components (Home, Privacy, Sources, About)
-│   ├── components.js          # Shared components (Hero, Footer, ThemeToggle)
-│   └── theme-toggle.js        # Theme switcher logic
+├── index.html # SPA container (single div#app)
+├── scss/ # Sass source files
+│ ├── main.scss # Master import file (@use syntax)
+│ ├── _variables.scss # Colors, spacing, breakpoints
+│ ├── _mixins.scss # Responsive mixins
+│ ├── _base.scss # Reset, root, global styles
+│ ├── _theme-toggle.scss # Theme switcher
+│ ├── _hero.scss # Hero section
+│ ├── _demo.scss # Contact form section
+│ ├── _features.scss # Features grid
+│ ├── _tech-stack.scss # Tech stack grid
+│ ├── _content-pages.scss # Content pages styling
+│ └── _footer.scss # Footer with navigation
+├── css/ # Compiled CSS (gitignored)
+│ └── main.css # Generated from SCSS
+├── js/ # JavaScript ES6+ modules
+│ ├── app.js # SPA entry point, router init
+│ ├── router.js # History API router
+│ ├── pages.js # Page components (Home, Privacy, Sources, About)
+│ ├── components.js # Shared components (Hero, Footer, ThemeToggle)
+│ └── theme-toggle.js # Theme switcher logic
 ├── assets/
-│   ├── icons/                 # Custom SVG icons (15 files)
-│   ├── scheme/                # Theme toggle SVG icons
-│   └── theme/                 # Favicon
-├── netlify.toml               # Netlify config (SPA redirects)
-├── README.md                  # Quick start guide
-├── package.json               # Dependencies & scripts
-├── .gitignore                 # Git ignore rules
+│ ├── icons/ # Custom SVG icons (15 files)
+│ ├── scheme/ # Theme toggle SVG icons
+│ └── theme/ # Favicon
+├── netlify.toml # Netlify config (SPA redirects)
+├── README.md # Quick start guide
+├── package.json # Dependencies & scripts
+├── .gitignore # Git ignore rules
 ├── .github/
-│   └── docs/
-│       ├── CODE_STRUCTURE.md  # This file
-│       └── RECAPTCHA_SETUP.md # reCAPTCHA configuration guide
+│ └── docs/
+│ ├── CODE_STRUCTURE.md # This file
+│ └── RECAPTCHA_SETUP.md # reCAPTCHA configuration guide
 └── netlify/
     └── functions/
-        ├── send-email.mjs         # Main serverless function
-        └── templates/             # Email HTML templates
-            ├── notification.mjs   # Recipient email template
-            └── confirmation.mjs   # Sender confirmation template
+        ├── send-email.mjs # Main serverless function
+        └── templates/ # Email HTML templates
+            ├── notification.mjs # Recipient email template
+            └── confirmation.mjs # Sender confirmation template
 ```
 
 ---
 
-## 🔀 SPA Architecture
+## SPA Architecture
 
 ### Router System
 
@@ -286,7 +286,7 @@ This enables:
 
 ---
 
-## 🔧 Technologies
+## Technologies
 
 ### Frontend
 
@@ -314,7 +314,7 @@ This enables:
 
 ---
 
-## 🔄 Development Workflow
+## Development Workflow
 
 ### 1. Local Development
 
@@ -344,12 +344,12 @@ RECAPTCHA_SECRET_KEY=your-secret-key
 
 Before committing:
 
-- ✅ All functions ≤ 14 lines
-- ✅ JSDoc comments added
-- ✅ BEM naming followed
-- ✅ ES6+ syntax used
-- ✅ No console errors
-- ✅ Tested locally with `netlify dev`
+- All functions ≤ 14 lines
+- JSDoc comments added
+- BEM naming followed
+- ES6+ syntax used
+- No console errors
+- Tested locally with `netlify dev`
 
 ### 4. Git Workflow
 
@@ -375,7 +375,7 @@ Netlify auto-deploys on push to `master`:
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 ### Root (`package.json`)
 
@@ -399,7 +399,7 @@ Currently minimal - add dev dependencies as needed.
 
 ---
 
-## 🎯 Code Examples
+## Code Examples
 
 ### Example 1: 14-Line Function
 
@@ -485,7 +485,7 @@ export const handler = async (event) => {
 
 ---
 
-## 🚀 Performance Optimizations
+## Performance Optimizations
 
 ### 1. Function Bundling
 
@@ -513,30 +513,30 @@ export const handler = async (event) => {
 
 ---
 
-## 🔒 Security Best Practices
+## Security Best Practices
 
 ### Environment Variables
 
-- ✅ Never commit `.env` to Git
-- ✅ Always add `.env` to `.gitignore`
-- ✅ Use Netlify Environment Variables for production
-- ✅ Mark sensitive values as "Secret"
+- Never commit `.env` to Git
+- Always add `.env` to `.gitignore`
+- Use Netlify Environment Variables for production
+- Mark sensitive values as "Secret"
 
 ### SMTP Credentials
 
-- ✅ Use Gmail App Passwords, not regular passwords
-- ✅ Enable 2FA on Gmail account
-- ✅ Store in Netlify Environment Variables
+- Use Gmail App Passwords, not regular passwords
+- Enable 2FA on Gmail account
+- Store in Netlify Environment Variables
 
 ### reCAPTCHA Keys
 
-- ✅ **Site Key** - Public (in HTML)
-- ✅ **Secret Key** - Private (in Netlify Environment Variables)
-- ✅ Never expose Secret Key in client-side code
+- **Site Key** - Public (in HTML)
+- **Secret Key** - Private (in Netlify Environment Variables)
+- Never expose Secret Key in client-side code
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Manual Testing
 
@@ -577,7 +577,7 @@ script?.src.match(/render=([^&]+)/)?.[1];
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [Netlify Functions Documentation](https://docs.netlify.com/functions/overview/)
 - [BEM Methodology](https://getbem.com/)
@@ -587,7 +587,7 @@ script?.src.match(/render=([^&]+)/)?.[1];
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 When contributing to this project:
 
@@ -600,12 +600,12 @@ When contributing to this project:
 
 ---
 
-## 📝 License
+## License
 
 This project is for educational purposes.
 
 ---
 
-## 👨‍💻 Author
+## ‍ Author
 
-Built with ❤️ while learning Netlify Functions, BEM, and modern JavaScript practices.
+Built with while learning Netlify Functions, BEM, and modern JavaScript practices.

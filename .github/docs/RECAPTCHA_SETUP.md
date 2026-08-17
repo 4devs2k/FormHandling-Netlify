@@ -1,4 +1,4 @@
-# 🔐 reCAPTCHA v3 Setup Guide
+# reCAPTCHA v3 Setup Guide
 
 ## Step 1: Create reCAPTCHA v3 Keys
 
@@ -79,7 +79,7 @@ git push origin master
 
 Netlify deploys automatically!
 
-## ✅ Testing
+## Testing
 
 1. Go to: `https://formhandling-netlify.netlify.app`
 2. Fill out the contact form
@@ -87,9 +87,9 @@ Netlify deploys automatically!
 
 ### What happens in the background:
 
-- ✅ **reCAPTCHA v3** validates invisibly in the background
-- ✅ **Rate Limiting** prevents more than 5 requests per hour per IP
-- ✅ **Email** is sent
+- **reCAPTCHA v3** validates invisibly in the background
+- **Rate Limiting** prevents more than 5 requests per hour per IP
+- **Email** is sent
 
 ### Debugging:
 
@@ -107,27 +107,27 @@ Rate limit OK: { remaining: 4, resetTime: ... }
 Email sent successfully
 ```
 
-## 🎯 What does reCAPTCHA v3 do?
+## What does reCAPTCHA v3 do?
 
 - **Invisible**: No checkboxes or captcha puzzles
 - **Score-based**: Provides score from 0.0 (bot) to 1.0 (human)
 - **Threshold**: We block requests with score < 0.5
 - **Action**: Monitors "submit" action
 
-## 🛡️ What does Rate Limiting do?
+## What does Rate Limiting do?
 
 - **5 requests per hour** per IP address
 - After 5 requests: HTTP 429 Error
 - Resets after 1 hour
 - Prevents spam attacks
 
-## ⚠️ Notes
+## Notes
 
 ### For Production:
 
-- ✅ Add your actual domain to reCAPTCHA domains
-- ✅ Set environment variables in Netlify
-- ✅ Test thoroughly
+- Add your actual domain to reCAPTCHA domains
+- Set environment variables in Netlify
+- Test thoroughly
 
 ### Rate Limiting Limitations:
 
@@ -137,11 +137,11 @@ Email sent successfully
 
 ### Security:
 
-- ✅ NEVER commit Secret Key to Git
-- ✅ Always store in .env or Netlify Environment Variables
-- ✅ .env is in .gitignore
+- NEVER commit Secret Key to Git
+- Always store in .env or Netlify Environment Variables
+- .env is in .gitignore
 
-## 🔗 Additional Resources
+## Additional Resources
 
 - [reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin)
 - [reCAPTCHA v3 Documentation](https://developers.google.com/recaptcha/docs/v3)
