@@ -17,7 +17,7 @@
     "sass",
     "recaptcha"
   ],
-  "author": "4devs2k",
+  "author": "Konstantin Aksenov",
   "license": "MIT",
   "dependencies": {
     "nodemailer": "^7.0.6"
